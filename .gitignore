@@ -26,6 +26,8 @@ Makefile
 # Visual Studio
 *.sln
 *.vcxproj*
+*.vs
+
 
 # Mac
 .DS_Store
