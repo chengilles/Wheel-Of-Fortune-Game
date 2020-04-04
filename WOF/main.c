@@ -19,6 +19,8 @@
  */
 int main() {
 
-    printf("Hello Project - Gilles Chen");
+    printf("Hello Project - Gilles Chen\n");
+    printf("Hello Project - Thomas Gillet\n");
+    return 0;
 }
 
