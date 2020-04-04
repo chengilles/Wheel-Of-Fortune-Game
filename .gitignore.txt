@@ -1,7 +1,35 @@
-nbproject/private/
+# Binaries
+*.exe
+*.dll
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+
+# Eclipse
+.cproject
+.project
+.settings/
+Debug/
+
+# NetBeans
+/WOF/nbproject
 build/
 nbbuild/
 dist/
 nbdist/
-nbactions.xml
-nb-configuration.xml
+.nb-gradle/
+*.inc
+Makefile
+
+
+# Visual Studio
+*.sln
+*.vcxproj*
+
+# Mac
+.DS_Store
+__MACOSX/
+
+# Windows
+Thumbs.db
