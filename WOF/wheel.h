@@ -10,7 +10,7 @@ int isPresent();
 // Returns number of occurences and reveal letters.
 int revealLetter();
 
-// Checks if the char is a vowel.
+// Checks if a char is a vowel.
 bool isVowel(char c);
 
 // Checks if the vowel is in the puzzle.
