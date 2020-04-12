@@ -12,3 +12,13 @@ void displayCurrentPlayer(Player* p) {
 void displayCurrentRound(int round) {
 	printf("\nROUND %d", round);
 }
+
+void loadingBar() {
+	system("color 2");
+	char load[51] = "[------------------------------------------------]";
+	for (int i = 1; i < 50; load[i++] = '|') {
+		printf("\r%s", &load);
+		Sleep(20);
+	}
+	system("color F");
+}
