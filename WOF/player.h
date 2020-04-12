@@ -11,7 +11,7 @@ typedef struct{
 int getPlayersNumber();
 
 //Returns the names of the players.
-char* getPlayerNames;
+char* getPlayerNames();
 
 //Returns a random integer to decide which player will start the first Turn.
 int chooseFirstPlayer();
