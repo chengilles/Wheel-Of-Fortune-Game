@@ -1,5 +1,6 @@
 #ifndef TURN_H
 #define TURN_H
+#include "player.h"
 
 // Selects a new puzzle, set money to 0, print winner.
 void endRound();
@@ -8,13 +9,13 @@ void endRound();
 int nextPlayer();
 
 // Displays current player name + his money.
-void displayCurrentPlayer();
+void displayCurrentPlayer(Player* p);
 
 // Displays current round.
 void displayCurrentRound();
 
 // Adds money to player.
-void addMoney(Player*, int money);
+void addMoney(Player* p, int money);
 
 // Displays the loading bar.
 void loadingBar();
