@@ -1,6 +1,6 @@
 #include "io.h"
 
-void fflushInput() {
+void flushInput() {
     while (getchar != '\n');
 }
 
