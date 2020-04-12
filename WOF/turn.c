@@ -8,3 +8,7 @@
 void displayCurrentPlayer(Player* p) {
 	printf("\n%s [%d $]", *(p->name), (p->currentTurnMoney));
 }
+
+void displayCurrentRound(int round) {
+	printf("\nROUND %d", round);
+}
