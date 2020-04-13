@@ -19,7 +19,11 @@ int getOccurrence(char *puzzle,char *currentPuzzle, int c){
     return occurrence;
 }
 
-    
-   
-    
-    
+void guessResult(int wheelValue,char *puzzle,char *currentPuzzle, int c){
+    if(getOccurrence(puzzle,currentPuzzle, c) == 0){
+        printf("The letter %c is not contained in the Word\n", c);
+    } else {
+        printf("Good Job! The letter %c is present %d times in the Word. You will get %d * %d money.", c, getOccurrence(puzzle,currentPuzzle,c),getOccurrence(puzzle,currentPuzzle,c), wheelValue);
+    }
+}
+ 
