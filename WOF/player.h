@@ -3,15 +3,15 @@
 
 typedef struct{
     char* name;
-    int currentTurnMoney = 0;
-    int totalMoney = 0;
+    int currentTurnMoney;
+    int totalMoney;
 } Player;
 
 //Returns the number of players.
 int getPlayersNumber();
 
 //Returns the names of the players.
-char* getPlayerNames;
+char* getPlayerNames();
 
 //Returns a random integer to decide which player will start the first Turn.
 int chooseFirstPlayer();
