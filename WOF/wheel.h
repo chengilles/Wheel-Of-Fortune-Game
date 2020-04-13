@@ -9,7 +9,7 @@ bool solvePuzzle();
 int getOccurrence(char *puzzle,char *currentPuzzle, int c);
 
 // Adds money to the player if the character guess is correctly.
-void guessResult(int wheelValue);
+void guessResult(int wheelValue,char *puzzle,char *currentPuzzle, int c);
 
 // Checks if a char is a vowel.
 bool isVowel(char c);
