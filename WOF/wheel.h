@@ -5,11 +5,11 @@
 // Compares input with current puzzle.
 bool solvePuzzle();
 
-// Checks if a letter is present and returns number of occurrences.
-int isPresent();
+// Returns occurrence of a character in the puzzle and reveal them if present.
+int getOccurrence(char *puzzle,char *currentPuzzle, int c);
 
-// Returns number of occurrences and reveal letters.
-int revealLetter();
+// Adds money to the player if the character guess is correctly.
+void guessResult(int wheelValue);
 
 // Checks if a char is a vowel.
 bool isVowel(char c);
