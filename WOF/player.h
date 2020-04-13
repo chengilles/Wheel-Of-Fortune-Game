@@ -1,10 +1,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "io.h"
+
 typedef struct{
     char* name;
-    int currentTurnMoney = 0;
-    int totalMoney = 0;
+    int currentTurnMoney;
+    int totalMoney;
 } Player;
 
 //Returns the number of players.
