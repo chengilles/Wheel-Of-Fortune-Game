@@ -3,8 +3,8 @@
 
 typedef struct{
     char* name;
-    int currentTurnMoney = 0;
-    int totalMoney = 0;
+    int currentTurnMoney;
+    int totalMoney;
 } Player;
 
 //Returns the number of players.
