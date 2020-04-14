@@ -1,9 +1,12 @@
 #ifndef WHEEL_H
 #define WHEEL_H
 #include <stdbool.h>
+#include <string.h>
+#include "player.h"
+#include "io.h"
 
 // Compares input with current puzzle.
-bool solvePuzzle();
+bool solvePuzzle(char* puzzle);
 
 // Returns occurrence of a character in the puzzle and reveal them if present.
 int getOccurrence(char *puzzle,char *currentPuzzle, int c);
@@ -15,10 +18,10 @@ void guessResult(int wheelValue,char *puzzle,char *currentPuzzle, int c);
 bool isVowel(char c);
 
 // Checks if the vowel is in the puzzle.
-bool buyVowel();
+bool buyVowel(Player* p, char c);
 
 // Returns a random number and takes the corresponding value in the array.
-int spinWheel();
+int spinWheel(int* wheel);
 
 #endif /* WHEEL_H */
 
