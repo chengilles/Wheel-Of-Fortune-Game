@@ -8,31 +8,27 @@ int getPlayersNumber() {
 }
 
 int chooseFirstPlayer() {
-	// Should be called in the main : srandTime(NULL)
 	return rand() % (getPlayersNumber());
 }
 
 char* getPlayerNames() {
-	Player** arrayOfPlayer[3] = initPlayers();
-	char* playerNames[3];
+	int numberPlayer = getPlayersNumber();
+	char* playerNames = NULL;
+	char* playerNames[] = malloc(playerNames, numberPlayer * sizeof(char*));
 
-	char* firstPlayerName = *(*arrayOfPlayer[0])->name;
-	char* secondPlayerName = *(*arrayOfPlayer[1])->name;
-	char* thirdPlayerName = *(*arrayOfPlayer[2])->name;
-
-	playerNames[0] = firstPlayerName;
-	playerNames[1] = firstPlayerName;
-	playerNames[2] = firstPlayerName;
+	for (int i = 0; i < numberPlayer; i++){
+		playerNames[i] = *(playerNames[i])->name;
+	}
 
 	return playerNames;
-	
 }
 
 Player** initPlayers() {
-	int numberOfPlayers = malloc(sizeof(int) * getPlayersNumber());
-	Player** arrayOfPlayer = numberOfPlayers;
+	int numberPlayer = getPlayersNumber();
+	Player** arrayOfPlayer = NULL;
+	arrayOfPlayer = malloc(arrayOfPlayer, numberPlayer * sizeof(Player*));
 
-	for (int i = 0; i < numberOfPlayers; i++) {
+	for (int i = 0; i < numberPlayer; i++) {
 		arrayOfPlayer[i]->name = strdup(my_gets(BUFFER_SIZE));
 		arrayOfPlayer[i]->currentTurnMoney = 0;
 		arrayOfPlayer[i]->totalMoney = 0;
