@@ -21,7 +21,7 @@ nbdist/
 .nb-gradle/
 *.inc
 Makefile
-
+test/
 
 # Visual Studio
 *.sln
@@ -35,3 +35,4 @@ __MACOSX/
 
 # Windows
 Thumbs.db
+
