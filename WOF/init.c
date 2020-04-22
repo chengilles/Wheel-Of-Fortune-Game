@@ -13,7 +13,7 @@ char** getPuzzles() {
     char* input;
 
     for (int i = 0; i < 3; i++){
-        printf("Enter the %d sentence :", &i);
+        printf("Enter the sentence %d :", &(i+1));
         input = strdup(my_gets(BUFFER_SIZE));
         sentences[i] = input;
     }
