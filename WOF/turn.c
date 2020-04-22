@@ -26,3 +26,7 @@ void loadingBar() {
 void addMoney(Player *ptr_player, int money){
     ptr_player->currentTurnMoney += money;
 }
+
+void nextPlayer(int currentPlayer){
+    currentPlayer++;
+}
