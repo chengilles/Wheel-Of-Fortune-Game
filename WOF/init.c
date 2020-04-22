@@ -11,5 +11,14 @@ void displayGreetings() {
 }
 
 char** getPuzzles() {
+    char sentences = NULL;
+    char* input;
 
+    for (int i = 0; i < 3; i++){
+        printf("Enter the %d sentence :", &i);
+        input = strdup(my_gets(BUFFER_SIZE));
+        sentences[i] = input;
+    }
+
+    return sentences;
 }
