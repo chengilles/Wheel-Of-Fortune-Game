@@ -1,5 +1,4 @@
 #include "turn.h"
-#include "player.h"
 
 void displayCurrentPlayer(Player* p) {
 	printf("\n%s [%d $]", *(p->name), (p->currentTurnMoney));
