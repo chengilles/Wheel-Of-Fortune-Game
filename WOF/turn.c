@@ -30,3 +30,11 @@ void addMoney(Player *ptr_player, int money){
 void nextPlayer(int currentPlayer){
     currentPlayer++;
 }
+
+void endRound(Player players, int playersNumber, int currentRound){
+    printf("\n---END OF ROUND %d---", currentRound);
+    qsort(players,playersNumber, sizeof(Player), compare);
+    for (int i = 0; i < playersNumber; i++) {
+        printf("\n%d. %s [%d $]",i+1,players[i].name,players[i].currentTurnMoney);
+    }
+}
