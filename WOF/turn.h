@@ -1,6 +1,10 @@
 #ifndef TURN_H
 #define TURN_H
 #include "player.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <Windows.h>
+
 
 // Selects a new puzzle, set money to 0, print winner.
 void endRound();
