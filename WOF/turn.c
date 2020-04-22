@@ -22,3 +22,7 @@ void loadingBar() {
 	}
 	system("color F");
 }
+
+void addMoney(Player *ptr_player, int money){
+    ptr_player->currentTurnMoney += money;
+}
