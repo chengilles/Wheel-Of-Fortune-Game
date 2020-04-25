@@ -8,12 +8,14 @@
 
 int main() {
     int playersNumber;
+    char** puzzles;
+    Player** players;
 
-    /*displayGreetings();
-    displayRules();*/
-    //getPuzzles();
-    playersNumber = getPlayersNumber();
-    getPlayerNames(playersNumber);
+    displayGreetings();
+    displayRules();
+
+    puzzles = getPuzzles();
+    players = initPlayers();
 
     return 0;
 }
