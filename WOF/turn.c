@@ -18,9 +18,9 @@ void loadingBar() {
 	system("color F");
 }
 
-int compare(const void s1, const void* s2) {
-    Player* p1 = (Player**)s1;
-    Player p2 = (Player)s2;
+int compare(const void* s1, const void* s2) {
+    Player* p1 = *(Player**)s1;
+    Player* p2 = *(Player**)s2;
     if (p1->totalMoney < p2->totalMoney)
         return 1;
     else if (p1->totalMoney > p2->totalMoney)
@@ -29,11 +29,11 @@ int compare(const void s1, const void* s2) {
         return 0;
 }
 
-void endGame(Player players, int playersNumber) {
+void endGame(Player* players, int playersNumber) {
     qsort(players, playersNumber, sizeof(Player), compare);
     printf("\n---GAME STANDING---");
     for (int i = 0; i < playersNumber; i++) {
-        printf("\n%d. %s [%d $]", i + 1, (players + i)->name, (*players + i)->currentTurnMoney);
+        printf("\n%d. %s [%d $]", i + 1, players[i].name, players[i].currentTurnMoney);
     }
     printf("\nThanks for playing !");
 }
@@ -46,10 +46,10 @@ void nextPlayer(int currentPlayer){
     currentPlayer++;
 }
 
-void endRound(Player players, int playersNumber, int currentRound){
+void endRound(Player* players, int playersNumber, int currentRound){
     printf("\n---END OF ROUND %d---", currentRound);
     qsort(players,playersNumber, sizeof(Player), compare);
     for (int i = 0; i < playersNumber; i++) {
-        printf("\n%d. %s [%d $]",i+1,players[i].name,players[i].currentTurnMoney);
+        printf("\n%d. %s [%d $]", i+1, players[i].name, players[i].currentTurnMoney);
     }
 }
