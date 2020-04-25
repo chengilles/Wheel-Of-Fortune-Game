@@ -1,7 +1,7 @@
 #include "io.h"
 
 void flushInput() {
-    while (getchar != '\n');
+    while (getchar() != '\n');
 }
 
 char* my_gets(int maxLength) {
