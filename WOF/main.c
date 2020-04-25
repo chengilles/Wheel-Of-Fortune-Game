@@ -10,19 +10,40 @@ int main() {
     srand(time(NULL));
 
     char** puzzles;
+    char* currentPuzzle;
+
     Player** players;
     int playersNumber;
     int currentPlayer;
+    int round = 0;
+    bool puzzleSolved = false;
 
-    /*displayGreetings();
-    displayRules();*/
+    displayGreetings();
+    displayRules();
 
-    //puzzles = getPuzzles();
+    puzzles = getPuzzles();
     playersNumber = getPlayersNumber();
-    //players = initPlayers(playersNumber);
+    players = initPlayers(playersNumber);
 
     currentPlayer = chooseFirstPlayer(playersNumber);
-    printf("%d", currentPlayer);
+
+    do {
+        displayCurrentRound(round+1);
+        currentPuzzle = puzzles[round];
+
+        for(int i = 0; i<playersNumber;i++)
+            displayCurrentPlayer(players[i]);
+        printf("\n\n--------------------------------------\n\n");
+
+        while (!puzzleSolved) {
+            printf("\nYour turn: ");
+            displayCurrentPlayer(players[currentPlayer]);
+            //Player plays
+            currentPlayer = (currentPlayer+1) % playersNumber;
+        }
+
+        round++;
+    } while (round < 3);
 
     return 0;
 }
