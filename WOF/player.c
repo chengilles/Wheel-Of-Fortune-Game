@@ -2,8 +2,10 @@
 
 int getPlayersNumber() {
 	int numberOfPlayers;
-	printf("How many players will be playing ? (2 or 3)\n");
-	scanf_s("%d", &numberOfPlayers);
+	do {
+		printf("How many players will be playing ? (2 or 3) ");
+		scanf_s("%d", &numberOfPlayers);
+	} while (numberOfPlayers != 2 && numberOfPlayers != 3);
 	return numberOfPlayers;
 }
 
@@ -11,12 +13,13 @@ int chooseFirstPlayer() {
 	return rand() % (getPlayersNumber());
 }
 
-char* getPlayerNames() {
-	int numberPlayer = getPlayersNumber();
-	char* playerNames = NULL;
-	playerNames = malloc(playerNames, numberPlayer * sizeof(char*));
+char* getPlayerNames(int playersNumber) {
+	flushInput();
+	char** playerNames = NULL;
+	playerNames = realloc(playerNames, playersNumber * sizeof(char*));
 
-	for (int i = 0; i < numberPlayer; i++){
+	for (int i = 0; i < playersNumber; i++){
+		printf("Enter player %d's name: ", i + 1);
 		playerNames[i] = _strdup(my_gets(BUFFER_SIZE));
 	}
 
