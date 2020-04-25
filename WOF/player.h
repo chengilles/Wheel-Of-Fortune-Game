@@ -16,12 +16,12 @@ typedef struct{
 int getPlayersNumber();
 
 //Returns a random integer to decide which player will start the first Turn.
-int chooseFirstPlayer();
+int chooseFirstPlayer(int playersNumber);
 
 Player* createPlayer(int index);
 
 //Returns an Array of Pointers to a structure Player.
-Player** initPlayers();
+Player** initPlayers(int playersNumber);
 
 #endif /* PLAYER_H */
 
