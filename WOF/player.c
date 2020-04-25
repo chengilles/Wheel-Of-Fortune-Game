@@ -2,16 +2,20 @@
 
 int getPlayersNumber() {
 	int numberOfPlayers;
+
 	do {
 		printf("\nHow many players will be playing ? (2 or 3) ");
 		scanf_s("%d", &numberOfPlayers);
 	} while (numberOfPlayers != 2 && numberOfPlayers != 3);
+
 	printf("\n");
+	flushInput();
+
 	return numberOfPlayers;
 }
 
-int chooseFirstPlayer() {
-	return rand() % (getPlayersNumber());
+int chooseFirstPlayer(int playersNumber) {
+	return rand() % (playersNumber);
 }
 
 
@@ -27,10 +31,7 @@ Player* createPlayer(int index) {
 	return p;
 }
 
-Player** initPlayers() {
-	int playersNumber = getPlayersNumber();
-	flushInput();
-
+Player** initPlayers(int playersNumber) {
 	Player** players = NULL;
 	players = realloc(players, playersNumber * sizeof(Player*));
 

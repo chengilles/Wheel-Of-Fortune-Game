@@ -7,15 +7,22 @@
 #include "wheel.h"
 
 int main() {
-    int playersNumber;
+    srand(time(NULL));
+
     char** puzzles;
     Player** players;
+    int playersNumber;
+    int currentPlayer;
 
-    displayGreetings();
-    displayRules();
+    /*displayGreetings();
+    displayRules();*/
 
-    puzzles = getPuzzles();
-    players = initPlayers();
+    //puzzles = getPuzzles();
+    playersNumber = getPlayersNumber();
+    //players = initPlayers(playersNumber);
+
+    currentPlayer = chooseFirstPlayer(playersNumber);
+    printf("%d", currentPlayer);
 
     return 0;
 }
