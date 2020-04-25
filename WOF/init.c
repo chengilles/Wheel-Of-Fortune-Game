@@ -9,12 +9,12 @@ void displayGreetings() {
 }
 
 char** getPuzzles() {
-    char sentences = NULL;
+    char** sentences = NULL;
     char* input;
 
     for (int i = 0; i < 3; i++){
-        printf("Enter the sentence %d :", &(i+1));
-        input = strdup(my_gets(BUFFER_SIZE));
+        printf("Enter the sentence %d :", i+1);
+        input = _strdup(my_gets(BUFFER_SIZE));
         sentences[i] = input;
     }
 
