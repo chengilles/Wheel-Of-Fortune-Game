@@ -14,10 +14,10 @@ int chooseFirstPlayer() {
 char* getPlayerNames() {
 	int numberPlayer = getPlayersNumber();
 	char* playerNames = NULL;
-	char* playerNames[] = malloc(playerNames, numberPlayer * sizeof(char*));
+	playerNames = malloc(playerNames, numberPlayer * sizeof(char*));
 
 	for (int i = 0; i < numberPlayer; i++){
-		playerNames[i] = *(playerNames[i])->name;
+		playerNames[i] = my_gets(playerNames[i])->name;
 	}
 
 	return playerNames;
@@ -29,7 +29,7 @@ Player** initPlayers() {
 	arrayOfPlayer = malloc(arrayOfPlayer, numberPlayer * sizeof(Player*));
 
 	for (int i = 0; i < numberPlayer; i++) {
-		arrayOfPlayer[i]->name = strdup(my_gets(BUFFER_SIZE));
+		arrayOfPlayer[i]->name = _strdup(my_gets(BUFFER_SIZE));
 		arrayOfPlayer[i]->currentTurnMoney = 0;
 		arrayOfPlayer[i]->totalMoney = 0;
 	}
