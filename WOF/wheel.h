@@ -9,16 +9,16 @@
 bool solvePuzzle(char* puzzle);
 
 // Returns occurrence of a character in the puzzle and reveal them if present.
-int getOccurrence(char *puzzle,char *currentPuzzle, int c);
+int getOccurrence(char *puzzle, char *currentPuzzle, char c);
 
 // Adds money to the player if the character guess is correctly.
-void guessResult(int wheelValue,char *puzzle,char *currentPuzzle, int c);
+bool guessResult(int wheelValue, char *puzzle, char *currentPuzzle, char c);
 
 // Checks if a char is a vowel.
 bool isVowel(char c);
 
 // Checks if the vowel is in the puzzle.
-bool buyVowel(Player* p, char c);
+bool buyVowel(Player* p, char* puzzle, char* currentPuzzle, char c);
 
 // Returns a random number and takes the corresponding value in the array.
 int spinWheel(int* wheel);

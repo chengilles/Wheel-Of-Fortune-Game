@@ -7,7 +7,7 @@ bool isVowel(char c){
     return false;
 }
 
-int getOccurrence(char *puzzle,char *currentPuzzle, int c){
+int getOccurrence(char *puzzle, char *currentPuzzle, char c){
     int occurrence = 0;
     for(int i = 0; i < strlen(puzzle); i++){
         if(c == puzzle[i]){
@@ -18,24 +18,23 @@ int getOccurrence(char *puzzle,char *currentPuzzle, int c){
     return occurrence;
 }
 
-bool guessResult(int wheelValue,char *puzzle,char *currentPuzzle, int c){
+bool guessResult(int wheelValue, char *puzzle, char *currentPuzzle, char c){
     int occurrence = getOccurrence(puzzle, currentPuzzle, c);
-    if(occurrence == 0){
+    if(occurrence == 0)
         return false;
-    } else {
-        return true;
-    }
+    return true;
 }
  
-bool buyVowel(Player* p, char c) {
+bool buyVowel(Player* p, char* puzzle, char* currentPuzzle, char c) {
     if (p->currentTurnMoney >= 250) {
         p->currentTurnMoney -= 250;
-        if (isPresent(c) != 0) {
-            printf("\nThere are %d '%c' in the puzzle!", isPresent(c), c);
+        int occ = getOccurrence(puzzle, currentPuzzle, c);
+        if (occ != 0) {
+            printf("\nThere are %d '%c' in the puzzle!", occ, c);
             return true;
         }
         else {
-            printf("\n%c is not in the puzzle.");
+            printf("\n%c is not in the puzzle.", c);
             return false;
         }
     }
@@ -46,7 +45,7 @@ bool buyVowel(Player* p, char c) {
 }
 
 bool solvePuzzle(char* puzzle) {
-    char* guess = strdup(my_gets(BUFFER_SIZE));
+    char* guess = _strdup(my_gets(BUFFER_SIZE));
     if (strcmp(puzzle, guess) == 0)
         return true;
     return false;
