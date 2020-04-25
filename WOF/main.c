@@ -7,10 +7,13 @@
 #include "wheel.h"
 
 int main() {
+    int playersNumber;
 
-    displayGreetings();
-    displayRules();
-    getPuzzles();
+    /*displayGreetings();
+    displayRules();*/
+    //getPuzzles();
+    playersNumber = getPlayersNumber();
+    getPlayerNames(playersNumber);
 
     return 0;
 }
