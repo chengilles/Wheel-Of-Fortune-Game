@@ -42,10 +42,6 @@ void addMoney(Player *ptr_player, int money){
     ptr_player->currentTurnMoney += money;
 }
 
-void nextPlayer(int currentPlayer){
-    currentPlayer++;
-}
-
 void endRound(Player* players, int playersNumber, int currentRound){
     printf("\n---END OF ROUND %d---", currentRound);
     qsort(players,playersNumber, sizeof(Player), compare);
