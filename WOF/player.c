@@ -17,7 +17,7 @@ char* getPlayerNames() {
 	playerNames = malloc(playerNames, numberPlayer * sizeof(char*));
 
 	for (int i = 0; i < numberPlayer; i++){
-		playerNames[i] = my_gets(playerNames[i])->name;
+		playerNames[i] = _strdup(my_gets(BUFFER_SIZE));
 	}
 
 	return playerNames;
