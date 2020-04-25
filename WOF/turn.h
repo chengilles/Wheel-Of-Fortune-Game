@@ -9,9 +9,6 @@
 // Selects a new puzzle, set money to 0, print winner.
 void endRound();
 
-// Increments the initPlayer var.
-int nextPlayer();
-
 // Displays current player name + his money.
 void displayCurrentPlayer(Player* p);
 
