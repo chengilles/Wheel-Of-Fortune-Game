@@ -9,6 +9,8 @@
 int main() {
 
     displayGreetings();
+    displayRules();
+    getPuzzles();
 
     return 0;
 }
