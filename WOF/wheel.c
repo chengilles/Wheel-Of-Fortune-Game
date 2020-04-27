@@ -56,3 +56,13 @@ int spinWheel(int* wheel) {
     int random = rand() % 24;
     return wheel + random;
 }
+
+
+void hidePuzzle(char* currentPuzzle){
+    for(int i = 0; i < strlen(currentPuzzle); i++){
+        if(currentPuzzle[i] != ' '){
+        currentPuzzle[i] = '-';
+        }
+    }
+    printf("\nThis will be the Puzzle you need to guess!: %s", currentPuzzle);
+}
