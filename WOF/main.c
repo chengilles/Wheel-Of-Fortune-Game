@@ -9,8 +9,8 @@
 int main() {
     srand(time(NULL));
 
-    char** puzzles;
     char* currentPuzzle;
+    char** puzzles;
 
     Player** players;
     int playersNumber;
@@ -24,19 +24,19 @@ int main() {
     puzzles = getPuzzles();
     playersNumber = getPlayersNumber();
     players = initPlayers(playersNumber);
-
-    currentPlayer = chooseFirstPlayer(playersNumber);
-
-    do {
-        displayCurrentRound(round+1);
-        currentPuzzle = puzzles[round];
-
+    currentPlayer = chooseFirstPlayer(playersNumber);   
+    
+    do {   
+        displayCurrentRound(round + 1);
         for(int i = 0; i<playersNumber;i++)
             displayCurrentPlayer(players[i]);
-        printf("\n\n--------------------------------------\n\n");
 
-        while (!puzzleSolved) {
-            printf("\nYour turn: ");
+        currentPuzzle = puzzles[round];
+        hidePuzzle(currentPuzzle);
+
+        int a = 0;
+        while (a++< 3) {
+            printf("Your turn: ");
             displayCurrentPlayer(players[currentPlayer]);
             //Player plays
             currentPlayer = (currentPlayer+1) % playersNumber;
@@ -47,4 +47,3 @@ int main() {
 
     return 0;
 }
-

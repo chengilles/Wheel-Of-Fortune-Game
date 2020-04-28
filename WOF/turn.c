@@ -5,7 +5,7 @@ void displayCurrentPlayer(Player* p) {
 }
 
 void displayCurrentRound(int round) {
-	printf("\nROUND %d", round);
+	printf("\nROUND %d\n", round);
 }
 
 void loadingBar() {
