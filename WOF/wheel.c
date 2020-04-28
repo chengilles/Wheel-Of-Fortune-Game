@@ -64,7 +64,7 @@ void hidePuzzle(char* currentPuzzle){
         currentPuzzle[i] = '-';
         }
     }
-    printf("\nThis will be the Puzzle you need to guess!: %s", currentPuzzle);
+    printf("\nThis will be the Puzzle you need to guess!  %s\n\n", currentPuzzle);
 }
 
 void displayPuzzle(char* currentPuzzle){

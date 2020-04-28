@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define BUFFER_SIZE 20
+#define BUFFER_SIZE 50
 
 //Gets the input and returns it.
 char* my_gets(int maxLength);

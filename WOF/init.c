@@ -9,7 +9,9 @@ void displayGreetings() {
 }
 
 char** getPuzzles() {
-    char* sentences[3];
+    char** sentences = NULL;
+
+    sentences = malloc(3 * sizeof(char*));
 
     for (int i = 0; i < 3; i++){
         printf("Enter the sentence %d: ", i+1);
