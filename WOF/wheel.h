@@ -23,5 +23,11 @@ bool buyVowel(Player* p, char* puzzle, char* currentPuzzle, char c);
 // Returns a random number and takes the corresponding value in the array.
 int spinWheel(int* wheel);
 
+// Hides the Puzzle by replacing each character with a dash '-'.
+void hidePuzzle(char* currentPuzzle);
+
+// Display the current Puzzle so you can see the status of the solving.
+void displayPuzzle(char* currentPuzzle);
+
 #endif /* WHEEL_H */
 
