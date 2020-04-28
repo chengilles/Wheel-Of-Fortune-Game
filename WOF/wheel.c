@@ -51,10 +51,9 @@ bool solvePuzzle(char* puzzle) {
     return false;
 }
 
-int spinWheel(int* wheel) {
-    //srand(time(NULL));
+int spinWheel(int wheel[]) {
     int random = rand() % 24;
-    return wheel + random;
+    return wheel[random];
 }
 
 
