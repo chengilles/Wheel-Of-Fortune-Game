@@ -12,5 +12,8 @@ char** getPuzzles();
 //Displays Greetings at the start of the WOF game.
 void displayGreetings();
 
+//Displays the logo of the WOF
+void displayLogo();
+
 #endif /* INIT_H */
 

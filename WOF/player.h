@@ -4,12 +4,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 #include "io.h"
 
 typedef struct{
     char* name;
     int currentTurnMoney;
     int totalMoney;
+    bool hasPlayed;
 } Player;
 
 //Returns the number of players.
