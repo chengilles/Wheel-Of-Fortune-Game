@@ -10,9 +10,10 @@ bool isVowel(char c){
 int getOccurrence(char *puzzle, char *currentPuzzle, char c){
     int occurrence = 0;
     for(int i = 0; i < strlen(puzzle); i++){
-        if(c == puzzle[i]){
+        if(tolower(c) == tolower(puzzle[i])){
             occurrence++;
-            currentPuzzle[i] = c;
+            c = puzzle[i] > 95 ? tolower(c) : toupper(c);
+            currentPuzzle[i] =c ;
         }
     }
     return occurrence;
@@ -60,12 +61,12 @@ int spinWheel(int wheel[]) {
 void hidePuzzle(char* currentPuzzle){
     for(int i = 0; i < strlen(currentPuzzle); i++){
         if(currentPuzzle[i] != ' '){
-        currentPuzzle[i] = '-';
+            currentPuzzle[i] = '-';
         }
     }
     printf("\nThis will be the Puzzle you need to guess!  %s\n\n", currentPuzzle);
 }
 
 void displayPuzzle(char* currentPuzzle){
-    printf("\nCurrent Puzzle: %s", currentPuzzle);
+    printf("\nCurrent Puzzle: %s\n\n", currentPuzzle);
 }

@@ -35,7 +35,7 @@ int main() {
         for(int i = 0; i<playersNumber;i++)
             displayCurrentPlayer(players[i]);
 
-        currentPuzzle = puzzles[round];
+        currentPuzzle = _strdup(puzzles[round]);
         hidePuzzle(currentPuzzle);
 
         while (!puzzleSolved) {
@@ -46,14 +46,14 @@ int main() {
 
             switch (wheelValue) {
                 case -1:
-                    printf("You landed on Lose Turn... :(\n");
+                    printf("You landed on Lose Turn... :(\n\n");
                 break;
                 case 0:
-                    printf("You landed on Bankrupt... :(\n");
+                    printf("You landed on Bankrupt... :(\n\n");
                     players[currentPlayer]->currentTurnMoney = 0;
                 break;
                 case 1:
-                    printf("You landed on Extra Turn !\n");
+                    printf("You landed on Extra Turn !\n\n");
                     currentPlayer = (--currentPlayer) % playersNumber;
                 break;
                 default:
@@ -72,13 +72,14 @@ int main() {
                         if (occ == 0) {
                             printf("%c is not contained in the puzzle\n", guess);
                             addMoney(players[currentPlayer], (occ * wheelValue));
-                            printf("Your new balance: %d\n", players[currentPlayer]->currentTurnMoney);
+                            printf("Your new balance: %d$\n", players[currentPlayer]->currentTurnMoney);
                         }
                         else {
-                            printf("Congratulations, %c is present %d times inthe puzzle\n", guess, occ);
+                            printf("Congratulations, %c is present %d times in the puzzle\n", guess, occ);
                             addMoney(players[currentPlayer], (occ * wheelValue));
-                            printf("Your new balance: %d\n", players[currentPlayer]->currentTurnMoney);
+                            printf("Your new balance: %d$\n", players[currentPlayer]->currentTurnMoney);
                         }
+                        displayPuzzle(currentPuzzle);
                     }
                     //SECOND OR MORE TURN
                     else {
@@ -96,12 +97,12 @@ int main() {
                                     if (occ == 0) {
                                         printf("%c is not contained in the puzzle\n", guess);
                                         addMoney(players[currentPlayer], -250);
-                                        printf("Your new balance: %d\n", players[currentPlayer]->currentTurnMoney);
+                                        printf("Your new balance: %d$\n\n", players[currentPlayer]->currentTurnMoney);
                                     }                                       
                                     else {
-                                        printf("Congratulations, %c is present %d times inthe puzzle\n", guess, occ);
+                                        printf("Congratulations, %c is present %d times in the puzzle\n", guess, occ);
                                         addMoney(players[currentPlayer], (occ * wheelValue) - 250);
-                                        printf("Your new balance: %d\n", players[currentPlayer]->currentTurnMoney);
+                                        printf("Your new balance: %d$\n\n", players[currentPlayer]->currentTurnMoney);
                                     }  
                                     succTurn = true;
                                 }
@@ -111,12 +112,12 @@ int main() {
                                 if (occ == 0) {
                                     printf("%c is not contained in the puzzle\n", guess);
                                     addMoney(players[currentPlayer], (occ * wheelValue));
-                                    printf("Your new balance: %d\n", players[currentPlayer]->currentTurnMoney);
+                                    printf("Your new balance: %d\n\n", players[currentPlayer]->currentTurnMoney);
                                 }
                                 else {
                                     printf("Congratulations, %c is present %d times inthe puzzle\n", guess, occ);
                                     addMoney(players[currentPlayer], (occ * wheelValue));
-                                    printf("Your new balance: %d\n", players[currentPlayer]->currentTurnMoney);
+                                    printf("Your new balance: %d\n\n", players[currentPlayer]->currentTurnMoney);
                                 }
                             }
                         } while (!succTurn);

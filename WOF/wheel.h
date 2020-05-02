@@ -2,6 +2,7 @@
 #define WHEEL_H
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 #include "player.h"
 #include "io.h"
 
