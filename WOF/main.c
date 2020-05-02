@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "init.h"
 #include "io.h"
-//#include "player.h"
+#include "player.h"
 #include "turn.h"
 #include "wheel.h"
 
@@ -21,6 +21,7 @@ int main() {
     int wheel[24] = { -1, 0, 0, 1, 500, 500, 550, 550, 600, 600, 650, 650, 700, 700, 700, 750, 750, 800, 800, 850, 850, 900, 900, 2500 };
     bool puzzleSolved = false;
 
+    displayLogo();
     displayGreetings();
     displayRules();
 

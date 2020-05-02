@@ -20,3 +20,21 @@ char** getPuzzles() {
 
     return sentences;
 }
+
+void displayLogo() {
+    FILE* myFile = NULL;
+    myFile = fopen("./ressources/wofLogzo.txt", "r");
+    if (myFile != NULL) {
+        char charReaded = fgetc(myFile);
+        while (charReaded != EOF) {
+            printf("%c", charReaded);
+            charReaded = fgetc(myFile);
+        }
+        fclose(myFile);
+    } else {
+        printf("--------------WOF--------------\n");
+        printf("------loading_file_error-------\n");
+        printf("--Please contact the support---\n\n");
+    }
+
+}
