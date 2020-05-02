@@ -1,7 +1,7 @@
 #include "wheel.h"
 
 bool isVowel(char c){
-    if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y'){
+    if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y') {
         return true;
     }
     return false;
@@ -10,7 +10,7 @@ bool isVowel(char c){
 int getOccurrence(char *puzzle, char *currentPuzzle, char c){
     int occurrence = 0;
     for(int i = 0; i < strlen(puzzle); i++){
-        if(tolower(c) == tolower(puzzle[i])){
+        if(currentPuzzle[i] == '-' && tolower(c) == tolower(puzzle[i])) {
             occurrence++;
             c = puzzle[i] > 95 ? tolower(c) : toupper(c);
             currentPuzzle[i] =c ;
@@ -19,7 +19,7 @@ int getOccurrence(char *puzzle, char *currentPuzzle, char c){
     return occurrence;
 }
 
-bool guessResult(int wheelValue, char *puzzle, char *currentPuzzle, char c){
+bool guessResult(int wheelValue, char *puzzle, char *currentPuzzle, char c) {
     int occurrence = getOccurrence(puzzle, currentPuzzle, c);
     if(occurrence == 0)
         return false;
@@ -58,15 +58,15 @@ int spinWheel(int wheel[]) {
 }
 
 
-void hidePuzzle(char* currentPuzzle){
-    for(int i = 0; i < strlen(currentPuzzle); i++){
-        if(currentPuzzle[i] != ' '){
+void hidePuzzle(char* currentPuzzle) {
+    for(int i = 0; i < strlen(currentPuzzle); i++) {
+        if(currentPuzzle[i] != ' ') {
             currentPuzzle[i] = '-';
         }
     }
     printf("\nThis will be the Puzzle you need to guess!  %s\n\n", currentPuzzle);
 }
 
-void displayPuzzle(char* currentPuzzle){
+void displayPuzzle(char* currentPuzzle) {
     printf("\nCurrent Puzzle: %s\n\n", currentPuzzle);
 }

@@ -14,12 +14,9 @@ int main() {
     char** puzzles;
     Player** players;
 
-    int round = 0;
-    int wheelValue;
-    int playersNumber;
-    int currentPlayer;
-    int wheel[24] = { -1, 0, 0, 1, 500, 500, 550, 550, 600, 600, 650, 650, 700, 700, 700, 750, 750, 800, 800, 850, 850, 900, 900, 2500 };
-    bool puzzleSolved = false;
+    int wheel[24] = wheelInit;
+    int round = 0, wheelValue, playersNumber, currentPlayer, occ;
+    bool puzzleSolved = false, playerTurn = false, correctCond = false;
 
     displayLogo();
     displayGreetings();
@@ -29,105 +26,73 @@ int main() {
     playersNumber = getPlayersNumber();
     players = initPlayers(playersNumber);
     currentPlayer = chooseFirstPlayer(playersNumber);   
-    
-    do {   
-        displayCurrentRound(round + 1);
-        for(int i = 0; i<playersNumber;i++)
+     
+    while (round++ < 3) {
+        displayCurrentRound(round);
+        for (int i = 0; i < playersNumber; i++)
             displayCurrentPlayer(players[i]);
 
-        currentPuzzle = _strdup(puzzles[round]);
+        currentPuzzle = _strdup(puzzles[round-1]);
         hidePuzzle(currentPuzzle);
 
         while (!puzzleSolved) {
-            printf("Your turn: ");
-            displayCurrentPlayer(players[currentPlayer]);
+            playerTurn = true;
 
-            wheelValue = spinWheel(wheel);
+            while (playerTurn) {
+                printf("Your turn: ");
+                displayCurrentPlayer(players[currentPlayer]);
+                wheelValue = spinWheel(wheel);
 
-            switch (wheelValue) {
-                case -1:
-                    printf("You landed on Lose Turn... :(\n\n");
-                break;
-                case 0:
-                    printf("You landed on Bankrupt... :(\n\n");
-                    players[currentPlayer]->currentTurnMoney = 0;
-                break;
-                case 1:
-                    printf("You landed on Extra Turn !\n\n");
-                    currentPlayer = (--currentPlayer) % playersNumber;
-                break;
-                default:
-                    printf("You landed on %d$ wedge\n", wheelValue);
-                    
-                    if (!players[currentPlayer]->hasPlayed) {
-                        do {
+                switch (wheelValue) {
+                 case -1:
+                     printf("You landed on Lose Turn... :(\n\n");
+                     playerTurn = false;
+                     break;
+                 case 0:
+                     printf("You landed on Bankrupt... :(\n\n");
+                     players[currentPlayer]->currentTurnMoney = 0;
+                     playerTurn = false;
+                     break;
+                 case 1:
+                     printf("You landed on Extra Turn !\n\n");
+                     currentPlayer = (--currentPlayer) % playersNumber;
+                     break;
+                 default:
+                     printf("You landed on %d$ wedge\n", wheelValue);
+                     do {
+                         correctCond = false;
+                         if(!players[currentPlayer]->hasPlayed)
                             printf("Enter a consonant: ");
-                            scanf_s(" %c", &guess);
-                            
-                            if (isVowel(guess)) {
-                                printf("%c is not a consonant, and you don't have enough money to buy a vowel!\n", guess);
-                            }
-                        } while (isVowel(guess));
-                        int occ = getOccurrence(puzzles[round], currentPuzzle, guess);
-                        if (occ == 0) {
-                            printf("%c is not contained in the puzzle\n", guess);
-                            addMoney(players[currentPlayer], (occ * wheelValue));
-                            printf("Your new balance: %d$\n", players[currentPlayer]->currentTurnMoney);
-                        }
-                        else {
-                            printf("Congratulations, %c is present %d times in the puzzle\n", guess, occ);
-                            addMoney(players[currentPlayer], (occ * wheelValue));
-                            printf("Your new balance: %d$\n", players[currentPlayer]->currentTurnMoney);
-                        }
-                        displayPuzzle(currentPuzzle);
-                    }
-                    //SECOND OR MORE TURN
-                    else {
-                        bool succTurn = false;
-                        do {
-                            printf("Enter a consonant or buy a vowel (-250$): ");
-                            scanf_s(" %c", &guess);
+                         else
+                             printf("Enter a consonant or buy a vowel (-250$): ");
+                         scanf_s(" %c", &guess);
 
-                            if (isVowel(guess)) {
-                                if (players[currentPlayer]->currentTurnMoney < 250){
-                                    printf("You don't have enough money to buy a vowel\n");
-                                }
-                                else {
-                                    int occ = getOccurrence(puzzles[round], currentPuzzle, guess);
-                                    if (occ == 0) {
-                                        printf("%c is not contained in the puzzle\n", guess);
-                                        addMoney(players[currentPlayer], -250);
-                                        printf("Your new balance: %d$\n\n", players[currentPlayer]->currentTurnMoney);
-                                    }                                       
-                                    else {
-                                        printf("Congratulations, %c is present %d times in the puzzle\n", guess, occ);
-                                        addMoney(players[currentPlayer], (occ * wheelValue) - 250);
-                                        printf("Your new balance: %d$\n\n", players[currentPlayer]->currentTurnMoney);
-                                    }  
-                                    succTurn = true;
-                                }
-                            }
-                            else {
-                                int occ = getOccurrence(puzzles[round], currentPuzzle, guess);
-                                if (occ == 0) {
-                                    printf("%c is not contained in the puzzle\n", guess);
-                                    addMoney(players[currentPlayer], (occ * wheelValue));
-                                    printf("Your new balance: %d\n\n", players[currentPlayer]->currentTurnMoney);
-                                }
-                                else {
-                                    printf("Congratulations, %c is present %d times inthe puzzle\n", guess, occ);
-                                    addMoney(players[currentPlayer], (occ * wheelValue));
-                                    printf("Your new balance: %d\n\n", players[currentPlayer]->currentTurnMoney);
-                                }
-                            }
-                        } while (!succTurn);
-                    }
-                break;
-            }
+                         //If if is the first turn of the player and he enters a vowel
+                         if (!players[currentPlayer]->hasPlayed && isVowel(guess)) {
+                             printf("%c is not a consonant, and you don't have enough money to buy a vowel!\n", guess);
+                             correctCond = true;
+                         }
+                         else if (players[currentPlayer]->hasPlayed && isVowel(guess) && players[currentPlayer]-> currentTurnMoney < 250){
+                             printf("You don't have enough money to buy a vowel!\n");
+                             correctCond = true;
+                         }
+                     } while (correctCond);  //!players[currentPlayer]->hasPlayed&& isVowel(guess));
+
+                     if ((playerTurn = occ = getOccurrence(puzzles[round-1], currentPuzzle, guess))) {
+                         printf("Congratulations, %c is present %d times in the puzzle\n", guess, occ);
+                         addMoney(players[currentPlayer], isVowel(guess) ? ((occ * wheelValue) - 250) : (occ * wheelValue));
+                         printf("Your new balance: %d$\n\n", players[currentPlayer]->currentTurnMoney);
+                     }
+                     else {
+                         printf("%c is not contained in the puzzle\n\n", guess);
+                     }
+                     displayPuzzle(currentPuzzle);
+                     players[currentPlayer]->hasPlayed = true;
+                     break;
+                }               
+            }   
             currentPlayer = (++currentPlayer) % playersNumber;
         }
-        round++;
-    } while (round < 3);
-
+    }
     return 0;
 }
