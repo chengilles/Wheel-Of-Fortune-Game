@@ -7,13 +7,13 @@
 
 
 // Selects a new puzzle, set money to 0, print winner.
-void endRound();
+void endRound(Player** players, int playersNumber, int currentRound);
 
 // Displays current player name + his money.
 void displayCurrentPlayer(Player* p);
 
 // Displays current round.
-void displayCurrentRound();
+void displayCurrentRound(int round);
 
 // Adds money to player.
 void addMoney(Player* p, int money);
@@ -22,6 +22,6 @@ void addMoney(Player* p, int money);
 void loadingBar();
 
 // Displays the winner and the final standing.
-void endGame();
+void endGame(Player** players, int playersNumber);
 
 #endif /* TURN_H */

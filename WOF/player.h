@@ -11,7 +11,7 @@ typedef struct{
     char* name;
     int currentTurnMoney;
     int totalMoney;
-    bool hasPlayed;
+    bool canBuyVowel;
 } Player;
 
 //Returns the number of players.
