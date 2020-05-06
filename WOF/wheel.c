@@ -18,13 +18,6 @@ int getOccurrence(char *puzzle, char *currentPuzzle, char c){
     }
     return occurrence;
 }
-
-bool guessResult(int wheelValue, char *puzzle, char *currentPuzzle, char c) {
-    int occurrence = getOccurrence(puzzle, currentPuzzle, c);
-    if(occurrence == 0)
-        return false;
-    return true;
-}
  
 bool buyVowel(Player* p, char* puzzle, char* currentPuzzle, char c) {
     if (p->currentTurnMoney >= 250) {
