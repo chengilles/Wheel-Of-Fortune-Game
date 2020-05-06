@@ -15,5 +15,7 @@ void displayGreetings();
 //Displays the logo of the WOF
 void displayLogo();
 
+char* trimwhitespace(char* str);
+
 #endif /* INIT_H */
 

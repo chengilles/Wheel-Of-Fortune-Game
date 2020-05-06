@@ -134,5 +134,6 @@ int main() {
         endRound(players, playersNumber, round);
     }
     endGame(players, playersNumber);
+
     return 0;
 }
