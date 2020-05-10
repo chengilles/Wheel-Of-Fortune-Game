@@ -6,6 +6,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include "io.h"
+#include "init.h"
 
 typedef struct{
     char* name;
