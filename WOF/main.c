@@ -8,15 +8,15 @@
 
 int main() {
     srand(time(NULL));
-
+    //loadingBar();
     char guess;
     char* currentPuzzle;
     char** puzzles;
     Player** players;
 
     int wheel[24] = wheelInit;
-    int round = 0, wheelValue, playersNumber, currentPlayer, occ, firstPlayer;
-    bool puzzleSolved, playerTurn = false, correctCond = false;
+    int round = 0, wheelValue, playersNumber, currentPlayer, occ = 0, firstPlayer;
+    bool puzzleSolved, playerTurn = false, correctCond = true;
 
     displayLogo();
     displayGreetings();
@@ -43,6 +43,7 @@ int main() {
             while (playerTurn) {
                 printf("Your turn: ");
                 displayCurrentPlayer(players[currentPlayer]);
+                //loadingBar();
                 wheelValue = spinWheel(wheel);
 
                 switch (wheelValue) {
@@ -62,44 +63,56 @@ int main() {
                      break;
                  default:
                      printf("You landed on %d$ wedge\n", wheelValue);
-                     do {
+
+                     if (onlyVowelsLeft(puzzles[round-1], currentPuzzle))
+                         players[currentPlayer]->canBuyVowel=true;
+
+                     //README 
+                     if (strcmp(puzzles[round - 1], currentPuzzle)==0) {
                          correctCond = false;
-                         if(!players[currentPlayer]->canBuyVowel)
-                            printf("Enter a consonant: ");
+                         occ = -1;
+                     }                         
+
+                     while (correctCond) {
+                         correctCond = false;
+                         if (!players[currentPlayer]->canBuyVowel)
+                             printf("Enter a consonant: ");
                          else
                              printf("Enter a consonant or buy a vowel (-250$): ");
                          scanf_s(" %c", &guess);
 
                          //If if is the first turn of the player and he enters a vowel
                          if (!players[currentPlayer]->canBuyVowel && isVowel(guess)) {
-                             printf("%c is not a consonant, and you don't have enough money to buy a vowel!\n", guess);
+                             printf("%c is not a consonant!\n", guess);
                              correctCond = true;
                          }
-                         else if (players[currentPlayer]->canBuyVowel && isVowel(guess) && players[currentPlayer]-> currentTurnMoney < 250){
-                             printf("You don't have enough money to buy a vowel!\n");
-                             correctCond = true;
-                         }
-                     } while (correctCond);
-
-                     if ((playerTurn = occ = getOccurrence(puzzles[round-1], currentPuzzle, guess))) {
-                         printf("Congratulations, %c is present %d times in the puzzle\n", guess, occ);
-                         addMoney(players[currentPlayer], isVowel(guess) ? ((occ * wheelValue) - 250) : (occ * wheelValue));
-                         printf("Your new balance: %d$\n\n", players[currentPlayer]->currentTurnMoney);
                      }
-                     else {
-                         printf("%c is not contained in the puzzle\n\n", guess);
+
+                     if (occ != -1) {
+                         if ((playerTurn = occ = getOccurrence(puzzles[round - 1], currentPuzzle, guess))) {
+                             printf("Congratulations, %c is present %d times in the puzzle\n", guess, occ);
+                             addMoney(players[currentPlayer], isVowel(guess) ? ((occ * wheelValue) - 250) : (occ * wheelValue));
+                             printf("Your new balance: %d$\n\n", players[currentPlayer]->currentTurnMoney);
+                         }
+                         else {
+                             printf("%c is not contained in the puzzle\n\n", guess);
+                         }
                      }
                      displayPuzzle(currentPuzzle);
                      players[currentPlayer]->canBuyVowel = true;
 
                      //If players find occurences then he can guess the puzzle
                      if (occ!=0) {
-                         do {
-                             printf("Do you want to guess the puzzle ? [Y/N]\n");
-                             scanf(" %c", &guess);
-                         } while (guess != 'Y' && guess != 'N');
-
-                         flushInput();
+                         if (occ>=0) {
+                             do {
+                                 printf("Do you want to guess the puzzle ? [Y/N]\n");
+                                 scanf(" %c", &guess);
+                             } while (guess != 'Y' && guess != 'N');
+                             flushInput();
+                         }
+                         else {
+                             guess = 'Y';
+                         }
 
                          if (guess == 'Y') {
                              printf("Enter your guess: ");
@@ -112,7 +125,7 @@ int main() {
 
                                  for (int i = 0; i < playersNumber; i++) {
                                      players[i]->canBuyVowel = false;
-                                     players[i]->totalMoney += players[i]->currentTurnMoney;
+                                     players[i]->totalMoney += (i == currentPlayer) ? players[i]->currentTurnMoney : 0;
                                      players[i]->currentTurnMoney = 0;
                                  }                                     
                              }
@@ -131,9 +144,12 @@ int main() {
             } 
             currentPlayer = (++currentPlayer) % playersNumber;
         }
-        endRound(players, playersNumber, round);
+        printf("\n---END OF ROUND %d---", round);
+        endRound(players, playersNumber);
     }
-    endGame(players, playersNumber);
+    printf("\n---GAME STANDING---");
+    endRound(players, playersNumber);
+    printf("Thanks for playing !\n\n\n");
 
     return 0;
 }
