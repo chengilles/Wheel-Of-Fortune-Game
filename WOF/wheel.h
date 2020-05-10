@@ -29,5 +29,8 @@ void hidePuzzle(char* currentPuzzle);
 // Display the current Puzzle so you can see the status of the solving.
 void displayPuzzle(char* currentPuzzle);
 
+// Checks if there are only vowels left in the Puzzle
+bool onlyVowelsLeft(char* puzzle, char* currentPuzzle);
+
 #endif /* WHEEL_H */
 
