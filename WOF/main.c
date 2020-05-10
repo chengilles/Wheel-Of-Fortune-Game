@@ -16,7 +16,7 @@ int main() {
 
     int wheel[24] = wheelInit;
     int round = 0, wheelValue, playersNumber, currentPlayer, occ = 0, firstPlayer;
-    bool puzzleSolved, playerTurn = false, correctCond = true;
+    bool puzzleSolved, playerTurn = false, correctCond;
 
     displayLogo();
     displayGreetings();
@@ -68,10 +68,12 @@ int main() {
                          players[currentPlayer]->canBuyVowel=true;
 
                      //README 
+                     correctCond = true;
                      if (strcmp(puzzles[round - 1], currentPuzzle)==0) {
                          correctCond = false;
                          occ = -1;
                      }                         
+
 
                      while (correctCond) {
                          correctCond = false;
@@ -107,7 +109,7 @@ int main() {
                              do {
                                  printf("Do you want to guess the puzzle ? [Y/N]\n");
                                  scanf(" %c", &guess);
-                             } while (guess != 'Y' && guess != 'N');
+                             } while (guess != 'Y' && guess != 'N'); 
                              flushInput();
                          }
                          else {
