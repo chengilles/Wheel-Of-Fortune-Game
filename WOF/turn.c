@@ -8,17 +8,37 @@ void displayCurrentRound(int round) {
 	printf("\nROUND %d\n", round);
 }
 
-void loadingBar() {
-	system("color 2");
-	char load[51] = "[------------------------------------------------]";
-	for (int i = 1; i < 50; load[i++] = '|') {
-		printf("\r%s", &load);
-		Sleep(20);
-	}
-	system("color F");
+void red() {
+    printf("\033[1;31m");
 }
 
-int compare(const void* s1, const void* s2) {
+void yellow() {
+  printf("\033[1;33m");
+}
+
+void reset() {
+    printf("\033[0m");
+}
+    
+void loadingBar() {
+    int a = 24 + (rand() % 24);
+    printf("%d\n\n\n", (a - 24));
+	char load[26] = "[------------------------]";
+	for (int i = 1; i < 26; load[i++] = '|') {
+        if (load[i] == '|') {
+            red();
+        }
+        else {
+            yellow();
+        }
+		printf("%s\n", &load);
+		Sleep(20);
+        load[i] = '-';
+	}
+    reset();
+}
+
+int compare(const Player* s1, const Player* s2) {
     Player* p1 = *(Player**)s1;
     Player* p2 = *(Player**)s2;
     if (p1->totalMoney < p2->totalMoney)
@@ -29,23 +49,14 @@ int compare(const void* s1, const void* s2) {
         return 0;
 }
 
-void endGame(Player* players, int playersNumber) {
-    qsort(players, playersNumber, sizeof(Player), compare);
-    printf("\n---GAME STANDING---");
+void endRound(Player** players, int playersNumber) {
+    qsort(players, playersNumber, sizeof(Player*), compare);
     for (int i = 0; i < playersNumber; i++) {
-        printf("\n%d. %s [%d $]", i + 1, players[i].name, players[i].currentTurnMoney);
+        printf("\n%d. %s [%d $]", i + 1, players[i]->name, players[i]->totalMoney);
     }
-    printf("\nThanks for playing !");
+    printf("\n\n");
 }
 
 void addMoney(Player *ptr_player, int money){
     ptr_player->currentTurnMoney += money;
-}
-
-void endRound(Player* players, int playersNumber, int currentRound){
-    printf("\n---END OF ROUND %d---", currentRound);
-    qsort(players,playersNumber, sizeof(Player), compare);
-    for (int i = 0; i < playersNumber; i++) {
-        printf("\n%d. %s [%d $]", i+1, players[i].name, players[i].currentTurnMoney);
-    }
 }

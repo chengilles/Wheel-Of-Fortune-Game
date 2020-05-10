@@ -18,29 +18,16 @@ int getOccurrence(char *puzzle, char *currentPuzzle, char c){
     }
     return occurrence;
 }
-
-bool guessResult(int wheelValue, char *puzzle, char *currentPuzzle, char c) {
-    int occurrence = getOccurrence(puzzle, currentPuzzle, c);
-    if(occurrence == 0)
-        return false;
-    return true;
-}
  
 bool buyVowel(Player* p, char* puzzle, char* currentPuzzle, char c) {
-    if (p->currentTurnMoney >= 250) {
-        p->currentTurnMoney -= 250;
-        int occ = getOccurrence(puzzle, currentPuzzle, c);
-        if (occ != 0) {
-            printf("\nThere are %d '%c' in the puzzle!", occ, c);
-            return true;
-        }
-        else {
-            printf("\n%c is not in the puzzle.", c);
-            return false;
-        }
+    p->currentTurnMoney -= 250;
+    int occ = getOccurrence(puzzle, currentPuzzle, c);
+    if (occ != 0) {
+        printf("\nThere are %d '%c' in the puzzle!", occ, c);
+        return true;
     }
     else {
-        printf("\nYou don't have enough money to buy a vowel.");
+        printf("\n%c is not in the puzzle.", c);
         return false;
     }
 }
@@ -57,7 +44,6 @@ int spinWheel(int wheel[]) {
     return wheel[random];
 }
 
-
 void hidePuzzle(char* currentPuzzle) {
     for(int i = 0; i < strlen(currentPuzzle); i++) {
         if(currentPuzzle[i] != ' ') {
@@ -69,4 +55,13 @@ void hidePuzzle(char* currentPuzzle) {
 
 void displayPuzzle(char* currentPuzzle) {
     printf("\nCurrent Puzzle: %s\n\n", currentPuzzle);
+}
+
+bool onlyVowelsLeft(char* puzzle, char* currentPuzzle){
+    for(int i = 0; i < strlen(currentPuzzle); i++) {
+        if(currentPuzzle[i] == '-' && !isVowel(puzzle[i])) {
+            return false;
+        }
+    }
+    return true;
 }

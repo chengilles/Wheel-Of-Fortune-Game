@@ -27,7 +27,7 @@ Player* createPlayer(int index) {
 	p->name = _strdup(my_gets(BUFFER_SIZE));
 	p->currentTurnMoney = 0;
 	p->totalMoney = 0;
-	p->hasPlayed = false;
+	p->canBuyVowel = false;
 
 	return p;
 }

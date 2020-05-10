@@ -10,15 +10,31 @@ void displayGreetings() {
 
 char** getPuzzles() {
     char** sentences = NULL;
-
     sentences = malloc(3 * sizeof(char*));
 
     for (int i = 0; i < 3; i++){
         printf("Enter the sentence %d: ", i+1);
         sentences[i] = _strdup(my_gets(BUFFER_SIZE));
+        sentences[i] = trimwhitespace(sentences[i]);
     }
 
     return sentences;
+}
+
+char* trimwhitespace(char* str) {
+    char* end;
+
+    while (isspace((unsigned char)*str)) str++;
+
+    if (*str == 0)
+        return str;
+
+    end = str + strlen(str) - 1;
+    while (end > str&& isspace((unsigned char)*end)) end--;
+
+    end[1] = '\0';
+
+    return str;
 }
 
 void displayLogo() {
