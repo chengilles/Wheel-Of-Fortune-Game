@@ -8,9 +8,6 @@
 
 #define wheelInit { -1, 0, 0, 1, 500, 500, 550, 550, 600, 600, 650, 650, 700, 700, 700, 750, 750, 800, 800, 850, 850, 900, 900, 2500 }
 
-// Compares input with current puzzle.
-bool solvePuzzle(char* puzzle);
-
 // Returns occurrence of a character in the puzzle and reveal them if present.
 int getOccurrence(char *puzzle, char *currentPuzzle, char c);
 

@@ -98,6 +98,7 @@ int main() {
                          }
                          else {
                              printf("%c is not contained in the puzzle\n\n", guess);
+                             addMoney(players[currentPlayer], isVowel(guess) ? (- 250) : 0);
                          }
                      }
                      displayPuzzle(currentPuzzle);
@@ -120,7 +121,7 @@ int main() {
                              printf("Enter your guess: ");
                              char* puzzleGuess = _strdup(my_gets(BUFFER_SIZE));
 
-                             if (strcmp(puzzleGuess, puzzles[round - 1]) == 0) {
+                             if (stringCompare(puzzleGuess, puzzles[round - 1])) {
                                  printf("Congratulations %s ! You have won round %d !\n\n", players[currentPlayer]->name, round);
                                  firstPlayer = (++firstPlayer) % playersNumber;
                                  puzzleSolved = true;

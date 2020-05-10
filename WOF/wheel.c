@@ -32,11 +32,13 @@ bool buyVowel(Player* p, char* puzzle, char* currentPuzzle, char c) {
     }
 }
 
-bool solvePuzzle(char* puzzle) {
-    char* guess = _strdup(my_gets(BUFFER_SIZE));
-    if (strcmp(puzzle, guess) == 0)
-        return true;
-    return false;
+bool stringCompare(char* puzzle, char* guess) {
+    for (int i = 0; i < strlen(puzzle); i++) {
+        if (tolower(puzzle[i]) != tolower(guess[i])) {
+            return false;
+        }
+    }
+    return true;
 }
 
 int spinWheel(int wheel[]) {

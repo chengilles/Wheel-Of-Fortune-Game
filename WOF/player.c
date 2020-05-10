@@ -6,6 +6,7 @@ int getPlayersNumber() {
 	do {
 		printf("\nHow many players will be playing ? (2 or 3) ");
 		scanf_s("%d", &numberOfPlayers);
+		while (getchar() != '\n');
 	} while (numberOfPlayers != 2 && numberOfPlayers != 3);
 
 	printf("\n");
@@ -24,7 +25,7 @@ Player* createPlayer(int index) {
 	p = malloc(sizeof(Player));
 
 	printf("Enter player %d's name: ", index+1);
-	p->name = _strdup(my_gets(BUFFER_SIZE));
+	p->name = trimwhitespace(_strdup(my_gets(BUFFER_SIZE)));
 	p->currentTurnMoney = 0;
 	p->totalMoney = 0;
 	p->canBuyVowel = false;
