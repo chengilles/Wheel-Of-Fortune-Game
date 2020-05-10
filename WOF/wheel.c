@@ -63,3 +63,13 @@ void hidePuzzle(char* currentPuzzle) {
 void displayPuzzle(char* currentPuzzle) {
     printf("\nCurrent Puzzle: %s\n\n", currentPuzzle);
 }
+
+bool onlyVowelsLeft(char* puzzle, char* currentPuzzle){
+    for(int i = 0; i < strlen(currentPuzzle); i++) {
+        if(currentPuzzle[i] == '-' && !isVowel(puzzle[i])) {
+            return false;
+            break;
+        }
+    }
+    return true;
+}
