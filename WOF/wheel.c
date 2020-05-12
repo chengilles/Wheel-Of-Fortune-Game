@@ -1,14 +1,14 @@
 #include "wheel.h"
 
 bool isVowel(char c){
-    if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y') {
+    if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y') 
         return true;
-    }
     return false;
 }
 
 int getOccurrence(char *puzzle, char *currentPuzzle, char c){
     int occurrence = 0;
+
     for(int i = 0; i < strlen(puzzle); i++){
         if(currentPuzzle[i] == '-' && tolower(c) == tolower(puzzle[i])) {
             occurrence++;
@@ -16,12 +16,14 @@ int getOccurrence(char *puzzle, char *currentPuzzle, char c){
             currentPuzzle[i] =c ;
         }
     }
+
     return occurrence;
 }
  
 bool buyVowel(Player* p, char* puzzle, char* currentPuzzle, char c) {
     p->currentTurnMoney -= 250;
     int occ = getOccurrence(puzzle, currentPuzzle, c);
+
     if (occ != 0) {
         printf("\nThere are %d '%c' in the puzzle!", occ, c);
         return true;
@@ -33,27 +35,22 @@ bool buyVowel(Player* p, char* puzzle, char* currentPuzzle, char c) {
 }
 
 bool stringCompare(char* puzzle, char* guess) {
-    for (int i = 0; i < strlen(puzzle); i++) {
-        if (tolower(puzzle[i]) != tolower(guess[i])) {
+    for (int i = 0; i < strlen(puzzle); i++) 
+        if (tolower(puzzle[i]) != tolower(guess[i])) 
             return false;
-        }
-    }
     return true;
 }
 
 int spinWheel(int wheel[]) {
     int random = rand() % 24;
-    //printf("\n\n%d\n\n", )
     loadingBar(random);
     return wheel[random];
 }
 
 void hidePuzzle(char* currentPuzzle) {
-    for(int i = 0; i < strlen(currentPuzzle); i++) {
-        if(currentPuzzle[i] != ' ') {
+    for(int i = 0; i < strlen(currentPuzzle); i++) 
+        if(currentPuzzle[i] != ' ') 
             currentPuzzle[i] = '-';
-        }
-    }
     printf("\nThis will be the Puzzle you need to guess!  %s\n\n", currentPuzzle);
 }
 
@@ -62,10 +59,8 @@ void displayPuzzle(char* currentPuzzle) {
 }
 
 bool onlyVowelsLeft(char* puzzle, char* currentPuzzle){
-    for(int i = 0; i < strlen(currentPuzzle); i++) {
-        if(currentPuzzle[i] == '-' && !isVowel(puzzle[i])) {
+    for(int i = 0; i < strlen(currentPuzzle); i++) 
+        if(currentPuzzle[i] == '-' && !isVowel(puzzle[i])) 
             return false;
-        }
-    }
     return true;
 }
