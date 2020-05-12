@@ -52,5 +52,11 @@ void displayLogo() {
         printf("------loading_file_error-------\n");
         printf("--Please contact the support---\n\n");
     }
+}
 
+void freePuzzles(char** puzzles) {
+    for (int i = 0; i < 3; i++) {
+        free(puzzles[i]);
+    }
+    free(puzzles);
 }

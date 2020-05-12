@@ -17,5 +17,6 @@ void displayLogo();
 
 char* trimwhitespace(char* str);
 
-#endif /* INIT_H */
+void freePuzzles(char** puzzles);
 
+#endif /* INIT_H */

@@ -45,7 +45,10 @@ Player** initPlayers(int playersNumber) {
 	return players;
 }
 
-
-
-
-
+void freePlayers(Player** players, int playersNumber) {
+	for (int i = 0; i < playersNumber; i++) {
+		free(players[i]->name);
+		free(players[i]);
+	}
+	free(players);
+}

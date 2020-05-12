@@ -154,5 +154,7 @@ int main() {
     endRound(players, playersNumber);
     printf("Thanks for playing !\n\n\n");
 
+    freePuzzles(puzzles);
+    freePlayers(players, playersNumber);
     return 0;
 }
