@@ -19,6 +19,6 @@ void displayCurrentRound(int round);
 void addMoney(Player* p, int money);
 
 // Displays the loading bar.
-void loadingBar();
+void loadingBar(int random);
 
 #endif /* TURN_H */

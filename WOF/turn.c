@@ -7,34 +7,26 @@ void displayCurrentPlayer(Player* p) {
 void displayCurrentRound(int round) {
 	printf("\nROUND %d\n", round);
 }
+   
+void loadingBar(int random) {
+    random += 25;
+    char load[27] = "[------------------------]";
 
-void red() {
-    printf("\033[1;31m");
-}
+    for (int i = 1; i < (random + 2); i++) {
+        load[i % 25] = '|';
 
-void yellow() {
-  printf("\033[1;33m");
-}
-
-void reset() {
-    printf("\033[0m");
-}
-    
-void loadingBar() {
-    int a = 24 + (rand() % 24);
-    printf("%d\n\n\n", (a - 24));
-	char load[26] = "[------------------------]";
-	for (int i = 1; i < 26; load[i++] = '|') {
-        if (load[i] == '|') {
-            red();
+        printf("\r");
+        for (int j = 0; j < 26; j++) {
+            if (j == (i % 25))
+                printf("\033[0m");
+            else
+                printf("\033[1;31m");
+            printf("%c", load[j]);
         }
-        else {
-            yellow();
-        }
-		printf("%s\n", &load);
-		Sleep(20);
-        load[i] = '-';
-	}
+        Sleep(80);
+        load[i % 25] = '-';
+        if (i == 24) i++;
+    }
     reset();
 }
 

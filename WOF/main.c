@@ -6,11 +6,9 @@
 #include "turn.h"
 #include "wheel.h"
 
-//cast pointer returned
-//test if pointer not null
 int main() {
     srand(time(NULL));
-    //loadingBar();
+
     char guess;
     char* currentPuzzle = NULL;
     char* puzzleGuess = NULL;
@@ -46,26 +44,26 @@ int main() {
             while (playerTurn) {
                 printf("Your turn: ");
                 displayCurrentPlayer(players[currentPlayer]);
-                //loadingBar();
+
                 wheelValue = spinWheel(wheel);
 
                 switch (wheelValue) {
                  case -1:
-                     printf("You landed on Lose Turn... :(\n\n");
+                     printf("\nYou landed on Lose Turn... :(\n\n");
                      playerTurn = false;
                      break;
                  case 0:
-                     printf("You landed on Bankrupt... :(\n\n");
+                     printf("\nYou landed on Bankrupt... :(\n\n");
                      players[currentPlayer]->currentTurnMoney = 0;
                      playerTurn = false;
                      break;
                  case 1:
-                     printf("You landed on Extra Turn !\n\n");
+                     printf("\nYou landed on Extra Turn !\n\n");
                      currentPlayer = (--currentPlayer) % playersNumber;
                      playerTurn = false;
                      break;
                  default:
-                     printf("You landed on %d$ wedge\n", wheelValue);
+                     printf("\nYou landed on %d$ wedge\n", wheelValue);
 
                      if (onlyVowelsLeft(puzzles[round-1], currentPuzzle))
                          players[currentPlayer]->canBuyVowel=true;
@@ -136,7 +134,7 @@ int main() {
                                  }                                     
                              }
                              else {
-                                 printf("I am afraid you fucked up frr\n\n");
+                                 printf("I am afraid you are wrong\n\n");
                              }
                              playerTurn = false;
                          }
@@ -152,6 +150,7 @@ int main() {
         }
         printf("\n---END OF ROUND %d---", round);
         endRound(players, playersNumber);
+        wheel[23] += 500;
     }
     printf("\n---GAME STANDING---");
     endRound(players, playersNumber);

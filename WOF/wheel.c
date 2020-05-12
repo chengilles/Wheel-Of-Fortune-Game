@@ -43,6 +43,8 @@ bool stringCompare(char* puzzle, char* guess) {
 
 int spinWheel(int wheel[]) {
     int random = rand() % 24;
+    //printf("\n\n%d\n\n", )
+    loadingBar(random);
     return wheel[random];
 }
 
