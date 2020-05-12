@@ -19,10 +19,13 @@ int chooseFirstPlayer(int playersNumber) {
 	return rand() % (playersNumber);
 }
 
-
 Player* createPlayer(int index) {
 	Player* p = NULL;
-	p = malloc(sizeof(Player));
+
+	if ((p = (Player*)malloc(sizeof(Player))) == NULL) {
+		perror("Allocation of player failed");
+		exit(1);
+	}
 
 	printf("Enter player %d's name: ", index+1);
 	p->name = trimwhitespace(_strdup(my_gets(BUFFER_SIZE)));
@@ -35,7 +38,10 @@ Player* createPlayer(int index) {
 
 Player** initPlayers(int playersNumber) {
 	Player** players = NULL;
-	players = realloc(players, playersNumber * sizeof(Player*));
+	if ((players = (Player**) realloc(players, playersNumber * sizeof(Player*))) == NULL) {
+		perror("Allocation of players failed");
+		exit(1);
+	}
 
 	for (int i = 0; i < playersNumber; i++) {
 		Player* p = createPlayer(i);

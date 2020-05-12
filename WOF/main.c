@@ -6,11 +6,14 @@
 #include "turn.h"
 #include "wheel.h"
 
+//cast pointer returned
+//test if pointer not null
 int main() {
     srand(time(NULL));
     //loadingBar();
     char guess;
-    char* currentPuzzle;
+    char* currentPuzzle = NULL;
+    char* puzzleGuess = NULL;
     char** puzzles;
     Player** players;
 
@@ -119,7 +122,7 @@ int main() {
 
                          if (guess == 'Y') {
                              printf("Enter your guess: ");
-                             char* puzzleGuess = _strdup(my_gets(BUFFER_SIZE));
+                             puzzleGuess = _strdup(my_gets(BUFFER_SIZE));
 
                              if (stringCompare(puzzleGuess, puzzles[round - 1])) {
                                  printf("Congratulations %s ! You have won round %d !\n\n", players[currentPlayer]->name, round);
@@ -154,7 +157,15 @@ int main() {
     endRound(players, playersNumber);
     printf("Thanks for playing !\n\n\n");
 
+    free(puzzleGuess);
+    free(currentPuzzle);
     freePuzzles(puzzles);
     freePlayers(players, playersNumber);
+
+    puzzleGuess = NULL;
+    currentPuzzle = NULL;
+    puzzles = NULL;
+    players = NULL;
+
     return 0;
 }
