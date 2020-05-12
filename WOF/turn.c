@@ -27,7 +27,7 @@ void loadingBar(int random) {
         load[i % 25] = '-';
         if (i == 24) i++;
     }
-    reset();
+    printf("\033[1;31m");
 }
 
 int compare(const Player* s1, const Player* s2) {
