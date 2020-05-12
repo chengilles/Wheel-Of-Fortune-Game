@@ -10,7 +10,11 @@ void displayGreetings() {
 
 char** getPuzzles() {
     char** sentences = NULL;
-    sentences = malloc(3 * sizeof(char*));
+
+    if ((sentences = (char**)malloc(3 * sizeof(char*))) == NULL) {
+        perror("Allocation of sentences failed");
+        exit(1);
+    }
 
     for (int i = 0; i < 3; i++){
         printf("Enter the sentence %d: ", i+1);

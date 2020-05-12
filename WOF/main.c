@@ -8,9 +8,10 @@
 
 int main() {
     srand(time(NULL));
-    //loadingBar();
+
     char guess;
-    char* currentPuzzle;
+    char* currentPuzzle = NULL;
+    char* puzzleGuess = NULL;
     char** puzzles;
     Player** players;
 
@@ -43,26 +44,26 @@ int main() {
             while (playerTurn) {
                 printf("Your turn: ");
                 displayCurrentPlayer(players[currentPlayer]);
-                //loadingBar();
+
                 wheelValue = spinWheel(wheel);
 
                 switch (wheelValue) {
                  case -1:
-                     printf("You landed on Lose Turn... :(\n\n");
+                     printf("\nYou landed on Lose Turn... :(\n\n");
                      playerTurn = false;
                      break;
                  case 0:
-                     printf("You landed on Bankrupt... :(\n\n");
+                     printf("\nYou landed on Bankrupt... :(\n\n");
                      players[currentPlayer]->currentTurnMoney = 0;
                      playerTurn = false;
                      break;
                  case 1:
-                     printf("You landed on Extra Turn !\n\n");
+                     printf("\nYou landed on Extra Turn !\n\n");
                      currentPlayer = (--currentPlayer) % playersNumber;
                      playerTurn = false;
                      break;
                  default:
-                     printf("You landed on %d$ wedge\n", wheelValue);
+                     printf("\nYou landed on %d$ wedge\n", wheelValue);
 
                      if (onlyVowelsLeft(puzzles[round-1], currentPuzzle))
                          players[currentPlayer]->canBuyVowel=true;
@@ -119,7 +120,7 @@ int main() {
 
                          if (guess == 'Y') {
                              printf("Enter your guess: ");
-                             char* puzzleGuess = _strdup(my_gets(BUFFER_SIZE));
+                             puzzleGuess = _strdup(my_gets(BUFFER_SIZE));
 
                              if (stringCompare(puzzleGuess, puzzles[round - 1])) {
                                  printf("Congratulations %s ! You have won round %d !\n\n", players[currentPlayer]->name, round);
@@ -133,7 +134,7 @@ int main() {
                                  }                                     
                              }
                              else {
-                                 printf("I am afraid you fucked up frr\n\n");
+                                 printf("I am afraid you are wrong\n\n");
                              }
                              playerTurn = false;
                          }
@@ -149,12 +150,21 @@ int main() {
         }
         printf("\n---END OF ROUND %d---", round);
         endRound(players, playersNumber);
+        wheel[23] += 500;
     }
     printf("\n---GAME STANDING---");
     endRound(players, playersNumber);
     printf("Thanks for playing !\n\n\n");
 
+    free(puzzleGuess);
+    free(currentPuzzle);
     freePuzzles(puzzles);
     freePlayers(players, playersNumber);
+
+    puzzleGuess = NULL;
+    currentPuzzle = NULL;
+    puzzles = NULL;
+    players = NULL;
+
     return 0;
 }
