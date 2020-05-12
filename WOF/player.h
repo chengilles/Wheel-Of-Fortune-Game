@@ -26,5 +26,6 @@ Player* createPlayer(int index);
 //Returns an Array of Pointers to a structure Player.
 Player** initPlayers(int playersNumber);
 
-#endif /* PLAYER_H */
+void freePlayers(Player** players, int playersNumber);
 
+#endif /* PLAYER_H */
