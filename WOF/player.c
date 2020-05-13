@@ -6,12 +6,10 @@ int getPlayersNumber() {
 	do {
 		printf("\nHow many players will be playing ? (2 or 3) ");
 		if(scanf_s("%d", &numberOfPlayers) == 0)
-		while (getchar() != '\n');
+		flushInput();
 	} while (numberOfPlayers != 2 && numberOfPlayers != 3);
 
 	printf("\n");
-	flushInput();
-
 	return numberOfPlayers;
 }
 
