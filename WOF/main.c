@@ -164,7 +164,7 @@ int main() {
         endRound(players, playersNumber);
         wheel[23] += 500;
     }
-    printf("\033[1;36m####################### GAME STANDING #######################\033[0m\n\n");
+    printf("\033[1;36m####################### GAME STANDING #######################\033[0m\n");
     endRound(players, playersNumber);
     printf("Thanks for playing !\n\n\n");
 
