@@ -19,22 +19,23 @@ int main() {
     int round = 0, wheelValue, playersNumber, currentPlayer, occ = 0, firstPlayer;
     bool puzzleSolved, playerTurn = false, correctCond;
 
-    displayLogo();
+   /* displayLogo();
     displayGreetings();
-    displayRules();
+    displayRules();*/
 
+    printf("\033[1;36m####################### INIT #######################\033[0m\n\n");
     puzzles = getPuzzles();
     playersNumber = getPlayersNumber();
     players = initPlayers(playersNumber);
     firstPlayer = chooseFirstPlayer(playersNumber);
      
+    printf("\033[1;36m\n################ LET THE GAME START ################\033[0m\n");
+
     while (round++ < 3) {
         puzzleSolved = false;
         currentPlayer = firstPlayer;
         displayCurrentRound(round);
-        for (int i = 0; i < playersNumber; i++)
-            displayCurrentPlayer(players[i]);
-
+      
         currentPuzzle = _strdup(puzzles[round-1]);
         hidePuzzle(currentPuzzle);
 
@@ -73,7 +74,10 @@ int main() {
                      if (strcmp(puzzles[round - 1], currentPuzzle)==0) {
                          correctCond = false;
                          occ = -1;
-                     }                         
+                     }
+                     else {
+                         occ = 0;
+                     }
 
 
                      while (correctCond) {
@@ -86,19 +90,20 @@ int main() {
 
                          //If if is the first turn of the player and he enters a vowel
                          if (!players[currentPlayer]->canBuyVowel && isVowel(guess)) {
-                             printf("%c is not a consonant!\n", guess);
+                             printf("'%c' is not a consonant!\n", guess);
                              correctCond = true;
                          }
+                         flushInput();
                      }
 
                      if (occ != -1) {
                          if ((playerTurn = occ = getOccurrence(puzzles[round - 1], currentPuzzle, guess))) {
-                             printf("Congratulations, %c is present %d times in the puzzle\n", guess, occ);
+                             printf("Congratulations, '%c' is present %d time(s) in the puzzle\n", guess, occ);
                              addMoney(players[currentPlayer], isVowel(guess) ? ((occ * wheelValue) - 250) : (occ * wheelValue));
-                             printf("Your new balance: %d$\n\n", players[currentPlayer]->currentTurnMoney);
+                             printf("Your new balance: %d$\n", players[currentPlayer]->currentTurnMoney);
                          }
                          else {
-                             printf("%c is not contained in the puzzle\n\n", guess);
+                             printf("'%c' is not contained in the puzzle\n", guess);
                              addMoney(players[currentPlayer], isVowel(guess) ? (- 250) : 0);
                          }
                      }
@@ -108,11 +113,12 @@ int main() {
                      //If players find occurences then he can guess the puzzle
                      if (occ!=0) {
                          if (occ>=0) {
+                             printf("\n\n");
                              do {
-                                 printf("Do you want to guess the puzzle ? [Y/N]\n");
-                                 scanf(" %c", &guess);
+                                 printf("Do you want to guess the puzzle ? [Y/N] ");
+                                 scanf_s(" %c", &guess);
+                                 flushInput();
                              } while (guess != 'Y' && guess != 'N'); 
-                             flushInput();
                          }
                          else {
                              guess = 'Y';
@@ -123,6 +129,7 @@ int main() {
                              puzzleGuess = _strdup(my_gets(BUFFER_SIZE));
 
                              if (stringCompare(puzzleGuess, puzzles[round - 1])) {
+                                 addMoney(players[currentPlayer], occ==-1 ? (wheelValue) : 0);
                                  printf("Congratulations %s ! You have won round %d !\n\n", players[currentPlayer]->name, round);
                                  firstPlayer = (++firstPlayer) % playersNumber;
                                  puzzleSolved = true;
@@ -134,12 +141,12 @@ int main() {
                                  }                                     
                              }
                              else {
-                                 printf("I am afraid you are wrong\n\n");
+                                 printf("I am afraid that's not the correct answer\n\n");
                              }
                              playerTurn = false;
                          }
                          else {
-                             printf("OK, let's continue!");
+                             printf("OK, let's continue!\n");
                              displayPuzzle(currentPuzzle);
                          }
                      }
@@ -148,11 +155,11 @@ int main() {
             } 
             currentPlayer = (++currentPlayer) % playersNumber;
         }
-        printf("\n---END OF ROUND %d---", round);
+        printf("\n-----END OF ROUND %d-----", round);
         endRound(players, playersNumber);
         wheel[23] += 500;
     }
-    printf("\n---GAME STANDING---");
+    printf("\033[1;36m####################### GAME STANDING #######################\033[0m\n\n");
     endRound(players, playersNumber);
     printf("Thanks for playing !\n\n\n");
 

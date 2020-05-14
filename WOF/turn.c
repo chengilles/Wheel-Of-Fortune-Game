@@ -1,14 +1,15 @@
 #include "turn.h"
 
 void displayCurrentPlayer(Player* p) {
-	printf("%s [%d $]\n", (p->name), (p->currentTurnMoney));
+	printf("%s [%d $]\t\t", (p->name), (p->currentTurnMoney));
 }
 
 void displayCurrentRound(int round) {
-	printf("\nROUND %d\n", round);
+    printf("\033[1;31m\n################ ROUND %d ################\033[0m\n", round);
 }
    
 void loadingBar(int random) {
+    printf("\n");
     random += 25;
     char load[27] = "[------------------------]";
 
@@ -46,7 +47,7 @@ void endRound(Player** players, int playersNumber) {
     qsort(players, playersNumber, sizeof(Player*), compare);
 
     for (int i = 0; i < playersNumber; i++) {
-        printf("\n%d. %s [%d $]", i + 1, players[i]->name, players[i]->totalMoney);
+        printf("\n %d. %s [%d $]", i + 1, players[i]->name, players[i]->totalMoney);
     }
     printf("\n\n");
 }

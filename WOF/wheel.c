@@ -35,7 +35,7 @@ bool buyVowel(Player* p, char* puzzle, char* currentPuzzle, char c) {
 }
 
 bool stringCompare(char* puzzle, char* guess) {
-    for (int i = 0; i < strlen(puzzle); i++) 
+    for (int i = 0; i < strlen(guess); i++)
         if (tolower(puzzle[i]) != tolower(guess[i])) 
             return false;
     return true;
@@ -51,11 +51,11 @@ void hidePuzzle(char* currentPuzzle) {
     for(int i = 0; i < strlen(currentPuzzle); i++) 
         if(currentPuzzle[i] != ' ') 
             currentPuzzle[i] = '-';
-    printf("\nThis will be the Puzzle you need to guess!  %s\n\n", currentPuzzle);
+    printf("\nThis will be the puzzle you need to guess: %s\n\n", currentPuzzle);
 }
 
 void displayPuzzle(char* currentPuzzle) {
-    printf("\nCurrent Puzzle: %s\n\n", currentPuzzle);
+    printf("\n\nCurrent Puzzle: %s\n", currentPuzzle);
 }
 
 bool onlyVowelsLeft(char* puzzle, char* currentPuzzle){

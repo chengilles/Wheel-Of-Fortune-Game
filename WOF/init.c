@@ -1,7 +1,7 @@
 #include "init.h"
 
 void displayRules() {
-	printf("\n\nAt each turn you have these options : spin the wheel and call a consonant. If your letter was in the puzzle you can then buy a vowel for $250, spin the wheel again or try to solve the puzzle. Each consonant is worth the money value of the field you hit. Contestants can continue spinning the wheel until they guess a wrong letter or hit Bankrupt / Lose a Turn. SAY LOWER AND UPPER IS SAME\n\n\n");
+	printf("\n\nAt each turn you have these options : spin the wheel and call a consonant.\nIf your letter was in the puzzle you can then buy a vowel for $250, spin the wheel again or try to solve the puzzle.\nEach consonant is worth the money value of the field you hit.\nContestants can continue spinning the wheel until they guess a wrong letter or hit Bankrupt / Lose a Turn.\nSAY LOWER AND UPPER IS SAME\n\n\n");
 }
 
 void displayGreetings() {
@@ -42,6 +42,7 @@ char* trimwhitespace(char* str) {
 }
 
 void displayLogo() {
+    printf("\033[0;32m");
     FILE* myFile = NULL;
     myFile = fopen("./ressources/wofLogo.txt", "r");
     if (myFile != NULL) {
@@ -56,6 +57,7 @@ void displayLogo() {
         printf("------loading_file_error-------\n");
         printf("--Please contact the support---\n\n");
     }
+    printf("\033[0m");
 }
 
 void freePuzzles(char** puzzles) {
