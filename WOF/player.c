@@ -26,7 +26,10 @@ Player* createPlayer(int index) {
 	}
 
 	printf("Enter player %d's name: ", index+1);
-	p->name = trimwhitespace(_strdup(my_gets(BUFFER_SIZE)));
+	if ((p->name = trimwhitespace(_strdup(my_gets(BUFFER_SIZE)))) == NULL) {
+		perror("Cannot copy the player name");
+		exit(1);
+	}
 	p->currentTurnMoney = 0;
 	p->totalMoney = 0;
 	p->canBuyVowel = false;

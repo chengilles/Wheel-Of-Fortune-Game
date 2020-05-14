@@ -12,14 +12,16 @@ char** getPuzzles() {
     char** sentences = NULL;
 
     if ((sentences = (char**)malloc(3 * sizeof(char*))) == NULL) {
-        perror("Allocation of sentences failed");
+        perror("Allocation of puzzle failed");
         exit(1);
     }
 
     for (int i = 0; i < 3; i++){
         printf("Enter the sentence %d: ", i+1);
-        sentences[i] = _strdup(my_gets(BUFFER_SIZE));
-        sentences[i] = trimwhitespace(sentences[i]);
+        if ((sentences[i] = trimwhitespace(_strdup(my_gets(BUFFER_SIZE)))) == NULL) {
+            perror("Cannot copy the puzzle");
+            exit(1);
+        }
     }
 
     return sentences;

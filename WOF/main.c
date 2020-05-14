@@ -3,8 +3,7 @@
 #include "init.h"
 #include "io.h"
 #include "player.h"
-#include "turn.h"
-#include "wheel.h"
+#include "game.h"
 
 int main() {
     srand(time(NULL));
@@ -19,9 +18,9 @@ int main() {
     int round = 0, wheelValue, playersNumber, currentPlayer, occ = 0, firstPlayer;
     bool puzzleSolved, playerTurn = false, correctCond;
 
-   /* displayLogo();
+    displayLogo();
     displayGreetings();
-    displayRules();*/
+    displayRules();
 
     printf("\033[1;36m####################### INIT #######################\033[0m\n\n");
     puzzles = getPuzzles();
@@ -36,7 +35,10 @@ int main() {
         currentPlayer = firstPlayer;
         displayCurrentRound(round);
       
-        currentPuzzle = _strdup(puzzles[round-1]);
+        if ((currentPuzzle = _strdup(puzzles[round - 1])) == NULL) {
+            perror("Cannot copy the sentence");
+            exit(1);
+        }
         hidePuzzle(currentPuzzle);
 
         while (!puzzleSolved) {
@@ -125,8 +127,11 @@ int main() {
                          }
 
                          if (guess == 'Y') {
-                             printf("Enter your guess: ");
-                             puzzleGuess = _strdup(my_gets(BUFFER_SIZE));
+                             printf("Enter your guess: ");                             
+                             if ((puzzleGuess = _strdup(my_gets(BUFFER_SIZE))) == NULL) {
+                                 perror("Cannot copy the guess");
+                                 exit(1);
+                             }
 
                              if (stringCompare(puzzleGuess, puzzles[round - 1])) {
                                  addMoney(players[currentPlayer], occ==-1 ? (wheelValue) : 0);
