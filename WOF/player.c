@@ -31,6 +31,7 @@ Player* createPlayer(int index) {
 		perror("Cannot copy the player name");
 		exit(1);
 	}
+
 	p->currentTurnMoney = 0;
 	p->totalMoney = 0;
 	p->canBuyVowel = false;
@@ -40,6 +41,7 @@ Player* createPlayer(int index) {
 
 Player** initPlayers(int playersNumber) {
 	Player** players = NULL;
+
 	if ((players = (Player**) realloc(players, playersNumber * sizeof(Player*))) == NULL) {
 		perror("Allocation of players failed");
 		exit(1);
