@@ -12,11 +12,13 @@ char** getPuzzles();
 //Displays Greetings at the start of the WOF game.
 void displayGreetings();
 
-//Displays the logo of the WOF
+//Displays the logo of the WOF game
 void displayLogo();
 
+//Trim the spaces at the begining and the end of a string
 char* trimwhitespace(char* str);
 
+//Free the 3 puzzles
 void freePuzzles(char** puzzles);
 
 #endif /* INIT_H */
