@@ -9,19 +9,17 @@ void displayCurrentRound(int round) {
 }
 
 void loadingBar(int random) {
-    printf("\n");
-    random += 25;
     char load[27] = "[------------------------]";
+    random += 27;
 
-    for (int i = 1; i < (random + 2); i++) {
+    printf("\n");
+
+    for (int i = 1; i < random; i++) {
         load[i % 25] = '|';
 
         printf("\r");
         for (int j = 0; j < 26; j++) {
-            if (j == (i % 25))
-                printf("\033[0m");
-            else
-                printf("\033[1;31m");
+            (j == (i % 25)) ? printf("\033[0m") : printf("\033[1;31m");
             printf("%c", load[j]);
         }
         Sleep(80);
@@ -68,26 +66,11 @@ int getOccurrence(char* puzzle, char* currentPuzzle, char c) {
     for (int i = 0; i < strlen(puzzle); i++) {
         if (currentPuzzle[i] == '-' && tolower(c) == tolower(puzzle[i])) {
             occurrence++;
-            c = puzzle[i] > 95 ? tolower(c) : toupper(c);
-            currentPuzzle[i] = c;
+            currentPuzzle[i] = c = puzzle[i] > 95 ? tolower(c) : toupper(c);
         }
     }
 
     return occurrence;
-}
-
-bool buyVowel(Player* p, char* puzzle, char* currentPuzzle, char c) {
-    p->currentTurnMoney -= 250;
-    int occ = getOccurrence(puzzle, currentPuzzle, c);
-
-    if (occ != 0) {
-        printf("\nThere are %d '%c' in the puzzle!", occ, c);
-        return true;
-    }
-    else {
-        printf("\n%c is not in the puzzle.", c);
-        return false;
-    }
 }
 
 bool stringCompare(char* puzzle, char* guess) {
