@@ -44,4 +44,7 @@ void displayPuzzle(char* currentPuzzle);
 // Checks if there are only vowels left in the Puzzle
 bool onlyVowelsLeft(char* puzzle, char* currentPuzzle);
 
+//  Compare 2 strings in tolower
+bool stringCompare(char* puzzle, char* guess);
+
 #endif /* GAME_H */

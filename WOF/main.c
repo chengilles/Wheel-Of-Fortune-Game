@@ -49,6 +49,7 @@ int main() {
                 displayCurrentPlayer(players[currentPlayer]);
 
                 wheelValue = spinWheel(wheel);
+                occ = 0;
 
                 switch (wheelValue) {
                  case -1:
@@ -68,19 +69,16 @@ int main() {
                  default:
                      printf("\nYou landed on %d$ wedge\n", wheelValue);
 
+                     // If the puzzle has only vowels left we allow player to buy one at his 1st turn
                      if (onlyVowelsLeft(puzzles[round-1], currentPuzzle))
                          players[currentPlayer]->canBuyVowel=true;
 
-                     //README 
+                     // If puzzles are the same then we directly ask for the puzzle guess
                      correctCond = true;
                      if (strcmp(puzzles[round - 1], currentPuzzle)==0) {
                          correctCond = false;
                          occ = -1;
                      }
-                     else {
-                         occ = 0;
-                     }
-
 
                      while (correctCond) {
                          correctCond = false;
@@ -98,6 +96,7 @@ int main() {
                          flushInput();
                      }
 
+                     // If puzzles are not the same, ask for a letter guess
                      if (occ != -1) {
                          if ((playerTurn = occ = getOccurrence(puzzles[round - 1], currentPuzzle, guess))) {
                              printf("Congratulations, '%c' is present %d time(s) in the puzzle\n", guess, occ);
@@ -112,8 +111,10 @@ int main() {
                      displayPuzzle(currentPuzzle);
                      players[currentPlayer]->canBuyVowel = true;
 
-                     //If players find occurences then he can guess the puzzle
+                     // If players find occurences then he can guess the puzzle
                      if (occ!=0) {
+
+                         // If puzzles are not the same ask if want to solve
                          if (occ>=0) {
                              printf("\n\n");
                              do {
@@ -122,11 +123,8 @@ int main() {
                                  flushInput();
                              } while (guess != 'Y' && guess != 'N'); 
                          }
-                         else {
-                             guess = 'Y';
-                         }
 
-                         if (guess == 'Y') {
+                         if (occ == -1 || guess == 'Y') {
                              printf("Enter your guess: ");                             
                              if ((puzzleGuess = _strdup(my_gets(BUFFER_SIZE))) == NULL) {
                                  perror("Cannot copy the guess");
@@ -146,7 +144,7 @@ int main() {
                                  }                                     
                              }
                              else {
-                                 printf("I am afraid that's not the correct answer\n\n");
+                                 printf("I am afraid this is not the correct answer\n\n");
                              }
                              playerTurn = false;
                          }
