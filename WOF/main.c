@@ -126,7 +126,7 @@ int main() {
 
                          if (occ == -1 || guess == 'Y') {
                              printf("Enter your guess: ");                             
-                             if ((puzzleGuess = strdup(my_gets(BUFFER_SIZE))) == NULL) {
+                             if ((puzzleGuess = trimwhitespace(strdup(my_gets(BUFFER_SIZE)))) == NULL) {
                                  perror("Cannot copy the guess");
                                  exit(1);
                              }
