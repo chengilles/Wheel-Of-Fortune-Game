@@ -18,7 +18,7 @@ char** getPuzzles() {
 
     for (int i = 0; i < 3; i++){
         printf("Enter the sentence %d: ", i+1);
-        if ((sentences[i] = trimwhitespace(_strdup(my_gets(BUFFER_SIZE)))) == NULL) {
+        if ((sentences[i] = trimwhitespace(strdup(my_gets(BUFFER_SIZE)))) == NULL) {
             perror("Cannot copy the puzzle");
             exit(1);
         }
