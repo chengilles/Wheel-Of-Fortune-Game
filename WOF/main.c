@@ -144,7 +144,7 @@ int main() {
                                  }                                     
                              }
                              else {
-                                 printf("I am afraid this is not the correct answer\n\n");
+                                 printf("Unfortunately your guess is wrong.\n\n");
                              }
                              playerTurn = false;
                          }
