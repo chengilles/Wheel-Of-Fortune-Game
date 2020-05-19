@@ -1,11 +1,11 @@
 #include "init.h"
 
 void displayRules() {
-	printf("\n\nAt each turn you have these options : spin the wheel and call a consonant.\nIf your letter was in the puzzle you can then buy a vowel for $250, spin the wheel again or try to solve the puzzle.\nEach consonant is worth the money value of the field you hit.\nContestants can continue spinning the wheel until they guess a wrong letter or hit Bankrupt / Lose a Turn.\nSAY LOWER AND UPPER IS SAME\n\n\n");
+	printf("\n\nIf you would like to know how the game works in detail, please consider the Readme\nYou can not buy or enter a vowel on your first turn in a Round.\nIf you land on a wedge containing money value, a correct guess of a letter will grant you the Occurrence of that Letter in the Puzzle * The Money value you landed on.\nYou can only guess the Puzzle if you are asked to do so.\nYou don’t have to guess the “whitespaces” in between Words in the Puzzle.\n\n\n");
 }
 
 void displayGreetings() {
-	printf("Hi guys welcome to the best game ever made by the greatest developers.");
+	printf("Welcome to Wheel of Fortune.");
 }
 
 char** getPuzzles() {
