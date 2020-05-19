@@ -86,7 +86,7 @@ int main() {
                              printf("Enter a consonant: ");
                          else
                              printf("Enter a consonant or buy a vowel (-250$): ");
-                         scanf_s(" %c", &guess);
+                         scanf(" %c", &guess);
 
                          //If if is the first turn of the player and he enters a vowel
                          if (!players[currentPlayer]->canBuyVowel && isVowel(guess)) {
