@@ -1,7 +1,7 @@
 #include "init.h"
 
 void displayRules() {
-	printf("\n\nIf you would like to know how the game works in detail, please consider the Readme\nYou can not buy or enter a vowel on your first turn in a Round.\nIf you land on a wedge containing money value, a correct guess of a letter will grant you the Occurrence of that Letter in the Puzzle * The Money value you landed on.\nYou can only guess the Puzzle if you are asked to do so.\nYou don't have to guess the \"whitespaces\" in between Words in the Puzzle.\n\n\n");
+	printf("\n\nIf you would like to know how the game works in detail, please consider the Readme\nYou can not buy or enter a vowel on your first turn in a Round.\nIf you land on a wedge containing money value, a correct guess of a letter will grant you the Occurrence \nof that Letter in the Puzzle * The Money value you landed on. You can only guess the Puzzle if you are asked to do so.\nYou don't have to guess the \"whitespaces\" in between Words in the Puzzle.\n\n\n");
 }
 
 void displayGreetings() {
