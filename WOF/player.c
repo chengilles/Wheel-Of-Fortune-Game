@@ -6,7 +6,7 @@ int getPlayersNumber() {
 
 	do {
 		printf("How many players will be playing ? (2 or 3) ");
-		scanf_s("%d", &numberOfPlayers);
+		scanf("%d", &numberOfPlayers);
 		flushInput();
 	} while (numberOfPlayers != 2 && numberOfPlayers != 3);
 
@@ -27,7 +27,7 @@ Player* createPlayer(int index) {
 	}
 
 	printf("Enter player %d's name: ", index+1);
-	if ((p->name = trimwhitespace(_strdup(my_gets(BUFFER_SIZE)))) == NULL) {
+	if ((p->name = trimwhitespace(strdup(my_gets(BUFFER_SIZE)))) == NULL) {
 		perror("Cannot copy the player name");
 		exit(1);
 	}
