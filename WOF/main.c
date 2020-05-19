@@ -35,7 +35,7 @@ int main() {
         currentPlayer = firstPlayer;
         displayCurrentRound(round);
       
-        if ((currentPuzzle = _strdup(puzzles[round - 1])) == NULL) {
+        if ((currentPuzzle = strdup(puzzles[round - 1])) == NULL) {
             perror("Cannot copy the sentence");
             exit(1);
         }
@@ -119,14 +119,14 @@ int main() {
                              printf("\n\n");
                              do {
                                  printf("Do you want to guess the puzzle ? [Y/N] ");
-                                 scanf_s(" %c", &guess);
+                                 scanf(" %c", &guess);
                                  flushInput();
                              } while (guess != 'Y' && guess != 'N'); 
                          }
 
                          if (occ == -1 || guess == 'Y') {
                              printf("Enter your guess: ");                             
-                             if ((puzzleGuess = _strdup(my_gets(BUFFER_SIZE))) == NULL) {
+                             if ((puzzleGuess = strdup(my_gets(BUFFER_SIZE))) == NULL) {
                                  perror("Cannot copy the guess");
                                  exit(1);
                              }
