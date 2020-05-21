@@ -74,7 +74,7 @@ int getOccurrence(char* puzzle, char* currentPuzzle, char c) {
 }
 
 bool stringCompare(char* puzzle, char* guess) {
-    for (int i = 0; i < strlen(guess); i++)
+    for (int i = 0; i < strlen(puzzle); i++)
         if (tolower(puzzle[i]) != tolower(guess[i]))
             return false;
     return true;
