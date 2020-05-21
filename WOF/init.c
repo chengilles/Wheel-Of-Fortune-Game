@@ -17,11 +17,16 @@ char** getPuzzles() {
     }
 
     for (int i = 0; i < 3; i++){
-        printf("Enter the sentence %d: ", i+1);
-        if ((sentences[i] = trimwhitespace(strdup(my_gets(BUFFER_SIZE)))) == NULL) {
-            perror("Cannot copy the puzzle");
-            exit(1);
-        }
+        do {     
+            printf("Enter the sentence %d: ", i + 1);
+            if ((sentences[i] = trimwhitespace(strdup(my_gets(BUFFER_SIZE)))) == NULL) {
+                perror("Cannot copy the puzzle");
+                exit(1);
+            }
+            if (strlen(sentences[i]) < 3) {
+                printf("The puzzle should be at least 3 characters long\n");
+            }
+        } while (strlen(sentences[i]) < 3);
     }
 
     return sentences;
