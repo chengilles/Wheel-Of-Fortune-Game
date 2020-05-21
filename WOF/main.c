@@ -15,7 +15,7 @@ int main() {
     Player** players;
 
     int wheel[24] = wheelInit;
-    int round = 0, wheelValue, playersNumber, currentPlayer, occ = 0, firstPlayer;
+    int round = 0, wheelValue, playersNumber, currentPlayer, occ = 0;
     bool puzzleSolved, playerTurn = false, correctCond;
 
     displayLogo();
@@ -26,13 +26,12 @@ int main() {
     puzzles = getPuzzles();
     playersNumber = getPlayersNumber();
     players = initPlayers(playersNumber);
-    firstPlayer = chooseFirstPlayer(playersNumber);
+    currentPlayer = chooseFirstPlayer(playersNumber);
      
     printf("\033[1;36m\n################ LET THE GAME START ################\033[0m\n");
 
     while (round++ < 3) {
         puzzleSolved = false;
-        currentPlayer = firstPlayer;
         displayCurrentRound(round);
       
         if ((currentPuzzle = strdup(puzzles[round - 1])) == NULL) {
@@ -134,7 +133,6 @@ int main() {
                              if (stringCompare(puzzleGuess, puzzles[round - 1])) {
                                  addMoney(players[currentPlayer], occ==-1 ? (wheelValue) : 0);
                                  printf("Congratulations %s ! You have won round %d !\n\n", players[currentPlayer]->name, round);
-                                 firstPlayer = (++firstPlayer) % playersNumber;
                                  puzzleSolved = true;
 
                                  for (int i = 0; i < playersNumber; i++) {

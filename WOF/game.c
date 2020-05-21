@@ -42,10 +42,19 @@ int compare(const Player* s1, const Player* s2) {
 }
 
 void endRound(Player** players, int playersNumber) {
-    qsort(players, playersNumber, sizeof(Player*), compare);
+
+    Player** playersCopy;
+    if ((playersCopy = (Player**)malloc(sizeof(Player**))) == NULL) {
+        perror("Allocation of playersCopy failed");
+        exit(1);
+    }
+
+    memcpy(playersCopy, players, playersNumber * sizeof(Player*));
+
+    qsort(playersCopy, playersNumber, sizeof(Player*), compare);
 
     for (int i = 0; i < playersNumber; i++) {
-        printf("\n %d. %s [%d $]", i + 1, players[i]->name, players[i]->totalMoney);
+        printf("\n %d. %s [%d $]", i + 1, playersCopy[i]->name, playersCopy[i]->totalMoney);
     }
     printf("\n\n");
 }
