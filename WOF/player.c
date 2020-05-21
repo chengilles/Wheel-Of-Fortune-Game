@@ -26,11 +26,16 @@ Player* createPlayer(int index) {
 		exit(1);
 	}
 
-	printf("Enter player %d's name: ", index+1);
-	if ((p->name = trimwhitespace(strdup(my_gets(BUFFER_SIZE)))) == NULL) {
-		perror("Cannot copy the player name");
-		exit(1);
-	}
+	do {
+		printf("Enter player %d's name: ", index + 1);
+		if ((p->name = trimwhitespace(strdup(my_gets(BUFFER_SIZE)))) == NULL) {
+			perror("Cannot copy the player name");
+			exit(1);
+		}
+		if (strlen(p->name) < 3) {
+			printf("The name should be at least 3 characters long\n");
+		}
+	} while (strlen(p->name) < 3);
 
 	p->currentTurnMoney = 0;
 	p->totalMoney = 0;

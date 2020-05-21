@@ -23,10 +23,10 @@ char** getPuzzles() {
                 perror("Cannot copy the puzzle");
                 exit(1);
             }
-            if (strlen(sentences[i]) < 3) {
-                printf("The puzzle should be at least 3 characters long\n");
+            if (strlen(sentences[i]) < 5) {
+                printf("The puzzle should be at least 5 characters long\n");
             }
-        } while (strlen(sentences[i]) < 3);
+        } while (strlen(sentences[i]) < 5);
     }
 
     return sentences;
