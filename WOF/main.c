@@ -62,6 +62,7 @@ int main() {
                      break;
                  case 1:
                      printf("\nYou landed on Extra Turn !\n\n");
+                     //Decrement currentPlayer because Extra Turn so the same player spins again.
                      currentPlayer = (--currentPlayer) % playersNumber;
                      playerTurn = false;
                      break;

@@ -43,6 +43,7 @@ int compare(const Player* s1, const Player* s2) {
 
 void endRound(Player** players, int playersNumber) {
 
+    //Create a copy of players so the actual players array from main.c does not change.
     Player** playersCopy;
     if ((playersCopy = (Player**)malloc(sizeof(Player**))) == NULL) {
         perror("Allocation of playersCopy failed");
